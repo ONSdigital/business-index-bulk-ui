@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../img/favicon.ico">
+
+    <title>Multi Bulk List</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+    <!-- Custom styles for this template -->
+    <link href="../css/mycss.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <div class="container">
+
+    <header role="banner" id="global-header" class="">
+      <div class="header-wrapper">
+        <div class="header-global">
+          <div class="header-logo">
+            <a href="#" title="Go to the homepage" id="logo" class="content">
+            <img src="../img/orglogo.svg" width="240" height="135" alt="Office for National Statistics"> </a>
+          </div>
+          <div class="banner-text">
+            <h1> EXAMPLE UI </h1>
+          </div>
+        </div>
+      </div>
+    </header>
+
+  <!-- Static navbar -->
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" >Business Index Web Portal</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="bulk_list.html">Bulk List</a></li>
+            <li class="active"><a href="multi_bulk.html">Multi Bulk List</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div><!--/.container-fluid -->
+    </nav>
+    </div>
+  <div class="container-fluid">
+    <div class="col-sm-9 col-sm-offset-3 col-md-12 col-md-offset-0 main">
+    <form>
+      <div class="container" style:"overflow:hidden">
+          <h1 class="page-header">Bulk Match</h1>
+          <div class="form-group" style="width: 30em; float:left;">
+
+          <label>Business Name</label>
+          <input class="form-control" id="BusinessName" maxlength="50" placeholder="Enter BusinessName"><br>
+
+          <label>Industry Code</label>
+          <input class="form-control" id="IndustryCode" maxlength="5" placeholder="Enter Industry Code"><br>
+
+          <label for="PostCode">Postcode</label>
+          <input type="PostCode" class="form-control" id="PostCode" maxlength="2" placeholder="Enter the first two characters of a PostCode"><br>
+
+          <label for="employmentbandlabel">Employment Band</label>
+          <select id="employmentband" class="input-xlarge" >
+            <option></option>
+            <option value="A">A [0]</option>
+            <option value="B">B [1]</option>
+            <option value="C">C [2-4]</option>
+            <option value="D">D [5-9]</option>
+            <option value="E">E [10-19]</option>
+            <option value="F">F [20-24]</option>
+            <option value="G">G [25-49]</option>
+            <option value="H">H [50-74]</option>
+            <option value="I">I [75-99]</option>
+            <option value="J">J [100-149]</option>
+            <option value="K">K [150-199]</option>
+            <option value="L">L [200-249]</option>
+            <option value="M">M [250-299]</option>
+            <option value="N">N [300-499]</option>
+            <option value="O">O [500+]</option>
+          </select>
+
+          <label for="legalStatuslabel">Legal Status</label>
+          <select class="input-xlarge" id="legalStatus">
+            <option></option>
+            <option value="1">Company</option>
+            <option value="2">Sole Proprietor</option>
+            <option value="3">Partnership</option>
+            <option value="4">Public Corporation</option>
+            <option value="5">Non-profit Organisation</option>
+            <option value="6">Local Authority</option>
+            <option value="7">Central Government</option>
+            <option value="8">Charity</option>
+          </select>
+
+          <label for="turnoverlabel">Turnover £000's'</label>
+          <select class="input-xlarge" id="turnover">
+            <option></option>
+            <option value="A">A [0-99]</option>
+            <option value="B">B [100-249]</option>
+            <option value="C">C [250-499]</option>
+            <option value="D">D [500-999]</option>
+            <option value="E">E [1,000-1,999]</option>
+            <option value="F">F [2,000-4,999]</option>
+            <option value="G">G [5,000-9,999]</option>
+            <option value="H">H [10,000-49,999]</option>
+            <option value="I">I [50,000+]</option>
+          </select>
+
+          <label for="tradingstatuslabel">Trading Status</label>
+          <select class="input-xlarge" id="tradingstatus">
+            <option></option>
+            <option value="A">Active</option>
+            <option value="C">Closed</option>
+            <option value="D">Dormant</option>
+            <option value="I">Insolvent</option>
+          </select>
+
+          <button type="button" class="btn btn-primary" onclick="add_bulk('multi');">Add to Bulk Match</button>
+          <button type="button" class="btn btn-primary" onclick="download_JSON();">Download List of Queries</button>
+          <button type="reset" id="csv"class="btn btn-secondary">Clear</button>
+
+        </form>
+      </div>
+      <div id="bulk_list"></div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bulk_query.js"></script>
+  </body>
+</html>

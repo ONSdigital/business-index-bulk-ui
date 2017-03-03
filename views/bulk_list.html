@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../img/favicon.ico">
+
+    <title>Bulk List</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+    <!-- Custom styles for this template -->
+    <link href="../css/mycss.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+  <div class="container">
+
+  <header role="banner" id="global-header" class="">
+    <div class="header-wrapper">
+    <div class="header-global">
+      <div class="header-logo">
+        <a href="#" title="Go to the homepage" id="logo" class="content">
+        <img src="../img/orglogo.svg" width="240" height="135" alt="Office for National Statistics"> </a>
+      </div>
+      <div class="banner-text">
+        <h1> EXAMPLE UI </h1>
+      </div>
+    </div>
+  </header>
+
+  <!-- Static navbar -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" >Business Index Web Portal</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="../index.html">Home</a></li>
+          <li class="active"><a href="bulk_list.html">Bulk List</a></li>
+          <li><a href="multi_bulk.html">Multi Bulk List</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+  </nav>
+  </div>
+
+  <div class="container-fluid">
+  <div class="col-sm-9 col-sm-offset-3 col-md-12 col-md-offset-0 main">
+    <form>
+    <div class="container" style:"overflow:hidden">
+      <h1 class="page-header">Bulk List</h1>
+      <div class="form-group" style="width: 30em; float:left;">
+        <label for="IndustryCode">Industry Code</label>
+        <input class="form-control" id="IndustryCode" maxlength="5" placeholder="Enter Industry Code">
+        <br>
+
+        <button type="button" class="btn btn-primary" onclick="add_bulk('single');">Add to Bulk Match</button>
+        <button type="button" class="btn btn-primary" onclick="download_CSV();">Download List of Queries</button>
+        <button type="reset" id="csv"class="btn btn-secondary">Clear</button>
+
+        <br><br>
+      </div>
+      <div id="bulk_list"></div>
+    </div>
+  </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bulk_query.js"></script>
+  </body>
+</html>

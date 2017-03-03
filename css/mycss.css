@@ -1,0 +1,97 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+
+li {
+  list-style-type: none;
+}
+
+.left{float:left;}
+
+.reset {
+  float: left;
+}
+
+/* For the javascript highlighting */
+.highlight
+{
+background-color:yellow;
+}
+
+.navbar {
+  margin-bottom: 20px;
+  clear: left;
+}
+
+.input-xlarge {
+width: 270px;
+display: block ;
+margin-bottom:30px;
+}
+
+.input-xlargeinrow {
+width: 270px;
+margin-bottom:30px;
+margin-right: 90px;
+}
+
+/* Below is for the json highlighting */
+ pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+ .string { color: green; }
+ .number { color: darkorange; }
+ .boolean { color: blue; }
+ .null { color: magenta; }
+ .key { color: red; }
+
+ #jsonStr, #regeStr {
+  border: 2px dashed #666;
+  margin: 20px;
+  padding: 10px;
+  font-family: "Arial";
+}
+
+/* Div for the results */
+.results {
+font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+font-size: 14px;
+font-style: normal;
+font-variant: normal;
+font-weight: 400;
+line-height: 20px;
+line-height: 200%;
+}
+
+.list-on {
+  background: #F9F9F9;
+}
+
+.query {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-radius: 25px;
+    background: #ececf9;
+    border-color: black;
+    padding: 20px;
+    width: 100%;
+    height: 15%;
+}
+
+
+#logo {
+    float: left;
+}
+
+/* Changes the banner text (to the right of the logo) so it is inline with the logo */
+.banner-text {
+    text-align: right;
+    padding-top: 2%;
+}
+
+/* Changes the look of the Range Query Check Boxes */
+.rqcb
+{
+    width: 12em;
+    float: left;
+}
