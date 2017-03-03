@@ -1,8 +1,6 @@
-# DemoUI
+# DemoU
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/0c2ec4f5e9ad4a96bca8033b5c54e66a)](https://www.codacy.com/app/tom-cooling/business-index-ui?utm_source=github.com&utm_medium=referral&utm_content=ONSdigital/business-index-ui&utm_campaign=badger) [![Build Status](https://travis-ci.org/ONSdigital/business-index-ui.svg?branch=master)](https://travis-ci.org/ONSdigital/business-index-ui)
-
-For BI project
+For Bulk BI project
 
 ## Environment setup:
 
