@@ -1,68 +1,71 @@
-var multi_bulk_query = [];
-multi_bulk_query.push("["+"\n");
+var multiBulkQuery = [];
+multiBulkQuery.push("["+"\n");
 /**
-  * @function add_bulk(bulk_type)
+  * @function add_bulk(bulkType)
   *
-  * @param {String} bulk_type - Type of bulk
+  * @param {String} bulkType - Type of bulk
   *
   * @description Recieves user input and adds it to the
   * bulk search and query lists where they will be injected into the HTML page
   *
 */
-function add_bulk(bulk_type){
-  var query = get_bulk_query(bulk_type);
-  var to_add = [];
-  to_add += '<div class="form-group"  id="bulk_list" style="width: 30em; float:right; margin-right:20%">';
-  to_add += '<label>List of Queries</label>';
+function add_bulk(bulkType){
+  var query = get_bulk_query(bulkType);
+  var toAdd = [];
+  toAdd += "<div class='form-group'  id='bulk_list' style='width: 30em; float:right; margin-right:20%'>";
+  toAdd += "<label>List of Queries</label>";
   if (query !== ""){
-      multi_bulk_query.push(query+"\n");
+      multiBulkQuery.push(query+"\n");
     }
-  create_bulk_list(to_add);
+  create_bulk_list(toAdd);
 }
 
 
 /**
-  * @function add_bulk(bulk_type)
+  * @function add_bulk(bulkType)
   *
-  * @param {String} bulk_type - Type of bulk being sent to the API
+  * @param {String} bulkType - Type of bulk being sent to the API
   *
   * @description Gets user input and formats it for download
   *
   * @return {String} query - query string
   *
 */
-function get_bulk_query(bulk_type){
-  var industry_code;
-  bulk_type = bulk_type;
+function get_bulk_query(bulkType){
+  var industryCode;
+  var payeReference;
+  var vatNumber;
+
+  bulkType = bulkType;
   var query;
   var values;
-  if (bulk_type == "single")
+  if (bulkType == "single")
   {
-    industry_code = document.getElementById('IndustryCode').value.toString();
-    paye_code = document.getElementById('Paye').value.toString();
-    vat_code = document.getElementById('Vat').value.toString();
+    industryCode = document.getElementById("IndustryCode").value.toString();
+    payeReference = document.getElementById("Paye").value.toString();
+    vatNumber = document.getElementById("Vat").value.toString();
     var arr = [];
-    var values = [["PayeRefs=",paye_code,"\""],
-                  ["VatRefs=",vat_code,"\""],
-                  ["IndustryCode=",industry_code],"\""];
+    var values = [["PayeRefs=",payeReference,"\""],
+                  ["VatRefs=",vatNumber,"\""],
+                  ["IndustryCode=",industryCode],"\""];
   }
-  else if (bulk_type == "multi"){
-    industry_code = document.getElementById('IndustryCode').value.toString();
-    var business_name = document.getElementById('BusinessName').value.toString();
-    var employment_band = document.getElementById('employmentband').value.toString();
-    var legal_status = document.getElementById('legalStatus').value.toString();
-    var turn_over = document.getElementById('turnover').value.toString();
-    var trading_status = document.getElementById('tradingstatus').value.toString();
-    var post_code = document.getElementById('PostCode').value.toString();
+  else if (bulkType == "multi"){
+    industryCode = document.getElementById("IndustryCode").value.toString();
+    var businessName = document.getElementById("BusinessName").value.toString();
+    var employmentBand = document.getElementById("employmentband").value.toString();
+    var legalStatus = document.getElementById("legalStatus").value.toString();
+    var turnover = document.getElementById("turnover").value.toString();
+    var tradingStatus = document.getElementById("tradingstatus").value.toString();
+    var postCode = document.getElementById("PostCode").value.toString();
     var valid = false;
     var arr = []; // Array to hold the search query
-    var values = [["EmploymentBands=",employment_band,"\""],
-                  ["LegalStatus=",legal_status,"\""],
-                  ["Turnover=",turn_over,"\""],
-                  ["TradingStatus=",trading_status,"\""],
-                  ["BusinessName=",business_name,"\""],
-                  ["IndustryCode=",industry_code,"\""],
-                  ["PostCode=",post_code],"\""];
+    var values = [["EmploymentBands=",employmentBand,"\""],
+                  ["LegalStatus=",legalStatus,"\""],
+                  ["Turnover=",turnover,"\""],
+                  ["TradingStatus=",tradingStatus,"\""],
+                  ["BusinessName=",businessName,"\""],
+                  ["IndustryCode=",industryCode,"\""],
+                  ["PostCode=",postCode],"\""];
 }
     arr.push("{\"request\": \"");
     // Form the query:
@@ -85,46 +88,46 @@ function get_bulk_query(bulk_type){
 
 
 /**
-  * @function create_bulk_list(to_add, bulk_type)
+  * @function create_bulk_list(toAdd, bulkType)
   *
-  * @param 1 {String} to_add - The intial foundation for the list of queries
+  * @param 1 {String} toAdd - The intial foundation for the list of queries
   *
-  * @param 2 {Array} bulk_type - The bulk type
+  * @param 2 {Array} bulkType - The bulk type
   *
   * @description Generates the list of queries from user input w/ delete button
   *
 */
-function create_bulk_list(to_add){
-  to_add = to_add;
+function create_bulk_list(toAdd){
+  toAdd = toAdd;
   var x;
-    for (x = 1; x < multi_bulk_query.length; x++){
-      var replaced = multi_bulk_query[x].replace(/}|{|,|:|"|"|request/g,'');
-      to_add += "<h3>" +x.toString() + "." + replaced + "</h3>";
-      to_add += '<button type="button" class="btn btn-primary" id="search" onclick="delete_bulk(' + x.toString() + ');">Delete</button>';
-      to_add += "<br>";
+    for (x = 1; x < multiBulkQuery.length; x++){
+      var replaced = multiBulkQuery[x].replace(/}|{|,|:|"|"|request/g,"");
+      toAdd += "<h3>" +x.toString() + "." + replaced + "</h3>";
+      toAdd += "<button type='button' class='btn btn-primary' id='search' onclick='delete_bulk(' + x.toString() + ');'>Delete</button>";
+      toAdd += "<br>";
   }
-  to_add += '</div>';
-  document.getElementById("bulk_list").innerHTML = to_add;
+  toAdd += "</div>";
+  document.getElementById("bulk_list").innerHTML = toAdd;
 }
 
 
 /**
-  * @function delete_bulk (current_index, bulk_type)
+  * @function delete_bulk (current_index, bulkType)
   *
   * @param {Int} current_index - The selected index
   *
-  * @param 2 {String} bulk_type - type of bulk
+  * @param 2 {String} bulkType - type of bulk
   *
   * @description Deletes the selected query
   *
 */
 function delete_bulk(current_index){
-  var to_add = [];
-  to_add += '<div class="form-group"  id="bulk_list" style="width: 25em; float:right; margin-right:20%">';
-  to_add += '<label>List of Queries</label>';
+  var toAdd = [];
+  toAdd += "<div class='form-group'  id='bulk_list' style='width: 25em; float:right; margin-right:20%'>";
+  toAdd += "<label>List of Queries</label>";
   current_index = current_index;
-  multi_bulk_query.splice(current_index,1);
-  create_bulk_list(to_add,multi_bulk_query);
+  multiBulkQuery.splice(current_index,1);
+  create_bulk_list(toAdd,multiBulkQuery);
 }
 
 
@@ -135,12 +138,12 @@ function delete_bulk(current_index){
   *
 */
 function download_CSV(){
-  if (multi_bulk_query.length !== 0)
+  if (multiBulkQuery.length !== 0)
   {
-    var join_query = multi_bulk_query.join('');
-    var modifiedString = join_query.replace(/,\s*$/, '\n'+']');
+    var join_query = multiBulkQuery.join("");
+    var modifiedString = join_query.replace(/,\s*$/, "\n"+"]");
     var CSV = modifiedString;
-    var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+    var uri = "data:text/csv;charset=utf-8," + escape(CSV);
     var link = document.createElement("a");
     link.href = uri;
     var filename = "Sample" + ".csv";
@@ -151,12 +154,12 @@ function download_CSV(){
 
 
 function download_JSON(){
-  if (multi_bulk_query.length !== 0)
+  if (multiBulkQuery.length !== 0)
   {
-    var join_query =  multi_bulk_query.join("");
-    var modifiedString = join_query.replace(/,\s*$/, '\n'+']');
+    var join_query =  multiBulkQuery.join("");
+    var modifiedString = join_query.replace(/,\s*$/, "\n"+"]");
     var JSON = modifiedString;
-    var uri = 'data:text/json;charset=utf-8,' + escape(JSON);
+    var uri = "data:text/json;charset=utf-8," + escape(JSON);
     var link = document.createElement("a");
     link.href = uri;
     var filename = "Sample" + ".json";
