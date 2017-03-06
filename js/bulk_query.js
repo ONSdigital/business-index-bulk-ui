@@ -1,24 +1,5 @@
 var multiBulkQuery = [];
 multiBulkQuery.push("["+"\n");
-/**
-  * @function add_bulk(bulkType)
-  *
-  * @param {String} bulkType - Type of bulk
-  *
-  * @description Recieves user input and adds it to the
-  * bulk search and query lists where they will be injected into the HTML page
-  *
-*/
-function add_bulk(bulkType){
-  var query = get_bulk_query(bulkType);
-  var toAdd = [];
-  toAdd += "<div class='form-group'  id='bulk_list' style='width: 30em; float:right; margin-right:20%'>";
-  toAdd += "<label>List of Queries</label>";
-  if (query !== ""){
-      multiBulkQuery.push(query+"\n");
-    }
-  create_bulk_list(toAdd);
-}
 
 
 /**
@@ -35,21 +16,20 @@ function get_bulk_query(bulkType){
   var industryCode;
   var payeReference;
   var vatNumber;
-
+  var values = [];
+  var arr = [];
   bulkType = bulkType;
-  var query;
-  var values;
-  if (bulkType == "single")
+
+  if (bulkType === "single")
   {
     industryCode = document.getElementById("IndustryCode").value.toString();
     payeReference = document.getElementById("Paye").value.toString();
     vatNumber = document.getElementById("Vat").value.toString();
-    var arr = [];
-    var values = [["PayeRefs=",payeReference,"\""],
-                  ["VatRefs=",vatNumber,"\""],
-                  ["IndustryCode=",industryCode],"\""];
+    values = [["PayeRefs=",payeReference,"\""],
+              ["VatRefs=",vatNumber,"\""],
+              ["IndustryCode=",industryCode],"\""];
   }
-  else if (bulkType == "multi"){
+  else if (bulkType === "multi"){
     industryCode = document.getElementById("IndustryCode").value.toString();
     var businessName = document.getElementById("BusinessName").value.toString();
     var employmentBand = document.getElementById("employmentband").value.toString();
@@ -58,8 +38,7 @@ function get_bulk_query(bulkType){
     var tradingStatus = document.getElementById("tradingstatus").value.toString();
     var postCode = document.getElementById("PostCode").value.toString();
     var valid = false;
-    var arr = []; // Array to hold the search query
-    var values = [["EmploymentBands=",employmentBand,"\""],
+    values = [["EmploymentBands=",employmentBand,"\""],
                   ["LegalStatus=",legalStatus,"\""],
                   ["Turnover=",turnover,"\""],
                   ["TradingStatus=",tradingStatus,"\""],
@@ -81,7 +60,7 @@ function get_bulk_query(bulkType){
     arr.pop();
     if (valid){
       arr.push("\"},");
-      query = arr.join(""); // Join the array with no seperator
+      var query = arr.join(""); // Join the array with no seperator
     }
   return query;
 }
@@ -166,6 +145,26 @@ function download_JSON(){
     link.download = filename;
     link.click();
   }
+}
+
+/**
+  * @function add_bulk(bulkType)
+  *
+  * @param {String} bulkType - Type of bulk
+  *
+  * @description Recieves user input and adds it to the
+  * bulk search and query lists where they will be injected into the HTML page
+  *
+*/
+function add_bulk(bulkType){
+  var query = get_bulk_query(bulkType);
+  var toAdd = [];
+  toAdd += "<div class='form-group'  id='bulk_list' style='width: 30em; float:right; margin-right:20%'>";
+  toAdd += "<label>List of Queries</label>";
+  if (query !== ""){
+      multiBulkQuery.push(query+"\n");
+    }
+  create_bulk_list(toAdd);
 }
 
 // When entering a value that is not 0-9 the field resets
