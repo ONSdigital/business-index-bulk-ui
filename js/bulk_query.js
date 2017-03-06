@@ -1,3 +1,4 @@
+//global variable for array used throughout
 var multiBulkQuery = [];
 multiBulkQuery.push("["+"\n");
 
