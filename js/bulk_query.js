@@ -128,10 +128,10 @@ function downloadCSV(){
     var CSV = modifiedString;
     var uri = "data:text/csv;charset=utf-8," + escape(CSV);
     var link = document.createElement("a");
-    link.href = uri;
-    var filename = "Sample" + ".csv";
-    link.download = filename;
-    link.click();
+    link.setAttribute("href", uri);
+    link.setAttribute("download", "my_data.csv");
+    document.body.appendChild(link); // Required for FF
+    link.click(); // This will download the data file named "my_data.csv".
   }
 }
 
@@ -144,10 +144,10 @@ function downloadJSON(){
     var JSON = modifiedString;
     var uri = "data:text/json;charset=utf-8," + escape(JSON);
     var link = document.createElement("a");
-    link.href = uri;
-    var filename = "Sample" + ".json";
-    link.download = filename;
-    link.click();
+    link.setAttribute("href", uri);
+    link.setAttribute("download", "my_data.json");
+    document.body.appendChild(link); // Required for FF
+    link.click(); // This will download the data file named "my_data.csv".
   }
 }
 
