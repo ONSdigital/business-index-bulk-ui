@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../img/favicon.ico">
 
-    <title>Bulk List</title>
+    <title>Bulk Match</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -43,8 +43,8 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li><a href="../index.html">Home</a></li>
-          <li class="active"><a href="bulk_list.html">Bulk List</a></li>
-          <li><a href="multi_bulk.html">Multi Bulk List</a></li>
+          <li class="active"><a href="bulk_match.html">Bulk Match</a></li>
+          <li><a href="bulk_query.html">Bulk Query</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->
@@ -55,18 +55,16 @@
   <div class="col-sm-9 col-sm-offset-3 col-md-12 col-md-offset-0 main">
     <form>
     <div class="container" style:"overflow:hidden">
-      <h1 class="page-header">Bulk List</h1>
+      <h1 class="page-header">Bulk Match</h1>
       <div class="form-group" style="width: 30em; float:left;">
-        <label for="IndustryCode">Industry Code</label>
-        <input class="form-control" id="IndustryCode" maxlength="5" placeholder="Enter Industry Code">
-        <br>
-
-        <label for="IndustryCode">VAT Number</label>
-        <input class="form-control" id="Vat" placeholder="Enter VAT Number">
-        <br>
-
-        <label for="IndustryCode">PAYE Reference</label>
-        <input class="form-control" id="Paye" placeholder="Enter PAYE Reference">
+        <select id=select>
+          <option value="BusinessName">Business Name</option>
+          <option value="IndustryCode">Industry Code</option>
+          <option value="VatRefs">Vat Number</option>
+          <option value="PayeRefs">PAYE Reference</option>
+        </select>
+        <br><br>
+        <input class="form-control" id="selectEntry" maxlength="5" placeholder="Enter ">
         <br>
 
         <button type="button" class="btn btn-primary" onclick="addBulk('single');">Add to Bulk Match</button>

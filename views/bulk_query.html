@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../img/favicon.ico">
 
-    <title>Multi Bulk List</title>
+    <title>Bulk Query</title>
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <!-- <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
@@ -43,8 +43,8 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li><a href="../index.html">Home</a></li>
-            <li><a href="bulk_list.html">Bulk List</a></li>
-            <li class="active"><a href="multi_bulk.html">Multi Bulk List</a></li>
+            <li><a href="bulk_match.html">Bulk Match</a></li>
+            <li class="active"><a href="bulk_query.html">Bulk Query</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div><!--/.container-fluid -->
@@ -54,17 +54,23 @@
     <div class="col-sm-9 col-sm-offset-3 col-md-12 col-md-offset-0 main">
     <form>
       <div class="container" style:"overflow:hidden">
-          <h1 class="page-header">Bulk Match</h1>
+          <h1 class="page-header">Bulk Query</h1>
           <div class="form-group" style="width: 30em; float:left;">
 
           <label>Business Name</label>
-          <input class="form-control" id="BusinessName" maxlength="50" placeholder="Enter BusinessName"><br>
+          <input class="form-control" id="businessName" maxlength="50" placeholder="Enter Business Name"><br>
 
           <label>Industry Code</label>
-          <input class="form-control" id="IndustryCode" maxlength="5" placeholder="Enter Industry Code"><br>
+          <input class="form-control" id="industryCode" maxlength="5" placeholder="Enter Industry Code"><br>
+
+          <label>VAT Number</label>
+          <input class="form-control" id="vatNumber" maxlength="12" placeholder="Enter VAT Number"><br>
+
+          <label>PAYE Reference</label>
+          <input class="form-control" id="payeReference" maxlength="10" placeholder="Enter PAYE Reference"><br>
 
           <label for="PostCode">Postcode</label>
-          <input type="PostCode" class="form-control" id="PostCode" maxlength="2" placeholder="Enter the first two characters of a PostCode"><br>
+          <input type="PostCode" class="form-control" id="PostCode" maxlength="2" placeholder="Enter one or two character(s) of the Postcode Area"><br>
 
           <label for="employmentbandlabel">Employment Band</label>
           <select id="employmentband" class="input-xlarge" >
