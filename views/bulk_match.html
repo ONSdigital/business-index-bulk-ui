@@ -57,14 +57,16 @@
     <div class="container" style:"overflow:hidden">
       <h1 class="page-header">Bulk Match</h1>
       <div class="form-group" style="width: 30em; float:left;">
-        <select id=select>
+
+        <select class="form-control" id=select>
           <option value="BusinessName">Business Name</option>
           <option value="IndustryCode">Industry Code</option>
           <option value="VatRefs">Vat Number</option>
           <option value="PayeRefs">PAYE Reference</option>
         </select>
-        <br><br>
-        <input class="form-control" id="selectEntry" maxlength="5" placeholder="Enter ">
+        <br>
+
+        <input class="form-control" id="selectEntry" maxlength="50" placeholder="Enter BusinessName">
         <br>
 
         <button type="button" class="btn btn-primary" onclick="addBulk('single');">Add to Bulk Match</button>

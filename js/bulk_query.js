@@ -177,10 +177,6 @@ $("#industryCode").keyup(function() {
     $("#industryCode").val(this.value.match(/[0-9]*/));
 });
 
-$("#payeReference").keyup(function() {
-    $("#payeReference").val(this.value.match(/[0-9]*/));
-});
-
 $("#vatNumber").keyup(function() {
     $("#vatNumber").val(this.value.match(/[0-9]*/));
 });
