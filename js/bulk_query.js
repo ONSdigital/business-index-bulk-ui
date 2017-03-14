@@ -1,7 +1,6 @@
 //global variable for array used throughout
 var multiBulkQuery = [];
-multiBulkQuery.push("["+"\n");
-
+var firstUse = 1;
 
 /**
   * @function getBulkQuery(bulkType)
@@ -14,58 +13,67 @@ multiBulkQuery.push("["+"\n");
   *
 */
 function getBulkQuery(bulkType){
-  var industryCode;
-  var payeReference;
-  var vatNumber;
+  if (firstUse === 1){
+    if (bulkType === "single"){
+      var selectCategory = document.getElementById("select").value.toString();
+      multiBulkQuery.push(selectCategory+"\n");
+    }
+    else {
+      multiBulkQuery.push("["+"\n");
+    }
+  }
+  firstUse=0;
   var values = [];
   var arr = [];
   var query;
   var valid = false;
-  bulkType = bulkType;
 
-switch(bulkType){
-  case "single":
-    industryCode = document.getElementById("IndustryCode").value.toString();
-    payeReference = document.getElementById("Paye").value.toString();
-    vatNumber = document.getElementById("Vat").value.toString();
-    values = [["PayeRefs=",payeReference,"\""],
-              ["VatRefs=",vatNumber,"\""],
-              ["IndustryCode=",industryCode],"\""];
-  break;
+  switch(bulkType){
+    case "single":
+      selectCategory = document.getElementById("select").value.toString();
+      var selectValue = document.getElementById("selectEntry").value.toString();
+      values = [[selectCategory+"=",selectValue]];
+    break;
 
-  case "multi":
-    industryCode = document.getElementById("IndustryCode").value.toString();
-    var businessName = document.getElementById("BusinessName").value.toString();
-    var employmentBand = document.getElementById("employmentband").value.toString();
-    var legalStatus = document.getElementById("legalStatus").value.toString();
-    var turnover = document.getElementById("turnover").value.toString();
-    var tradingStatus = document.getElementById("tradingstatus").value.toString();
-    var postCode = document.getElementById("PostCode").value.toString();
-    values = [["EmploymentBands=",employmentBand,"\""],
-                  ["LegalStatus=",legalStatus,"\""],
-                  ["Turnover=",turnover,"\""],
-                  ["TradingStatus=",tradingStatus,"\""],
-                  ["BusinessName=",businessName,"\""],
-                  ["IndustryCode=",industryCode,"\""],
-                  ["PostCode=",postCode],"\""];
-  break;
-}
+    case "multi":
+      var businessName = document.getElementById("businessName").value.toString();
+      var industryCode = document.getElementById("industryCode").value.toString();
+      var vatNumber = document.getElementById("vatNumber").value.toString();
+      var payeReference = document.getElementById("payeReference").value.toString();
+      var employmentBand = document.getElementById("employmentband").value.toString();
+      var legalStatus = document.getElementById("legalStatus").value.toString();
+      var turnover = document.getElementById("turnover").value.toString();
+      var tradingStatus = document.getElementById("tradingstatus").value.toString();
+      var postCode = document.getElementById("PostCode").value.toString();
+      values = [["EmploymentBands=",employmentBand,"\""],
+                    ["LegalStatus=",legalStatus,"\""],
+                    ["Turnover=",turnover,"\""],
+                    ["TradingStatus=",tradingStatus,"\""],
+                    ["BusinessName=",businessName,"\""],
+                    ["IndustryCode=",industryCode,"\""],
+                    ["VatRefs=",vatNumber,"\""],
+                    ["PayeRefs=",payeReference,"\""],
+                    ["PostCode=",postCode],"\""];
+    break;
+  }
+  if (bulkType === "multi"){
     arr.push("{\"request\": \"");
-    // Form the query:
-    for(var x in values){
-      // Check to see if inputs are empty
-      if (values[x][1] !== "" && values[x][1] !== undefined){
-        valid = true;
-        arr.push(values[x][0]);
-        arr.push(values[x][1]);
-        arr.push(" AND ");
-      }
+  }
+  // Form the query:
+  for(var x in values){
+    // Check to see if inputs are empty
+    if (values[x][1] !== "" && values[x][1] !== undefined){
+      valid = true;
+      arr.push(values[x][0]);
+      arr.push(values[x][1]);
+      arr.push(" AND ");
     }
-    arr.pop();
-    if (valid){
-      arr.push("\"},");
-      query = arr.join(""); // Join the array with no seperator
-    }
+  }
+  arr.pop();
+  if (valid){
+    arr.push("\"},");
+    query = arr.join(""); // Join the array with no seperator
+  }
   return query;
 }
 
@@ -124,7 +132,7 @@ function downloadCSV(){
   if (multiBulkQuery.length !== 0)
   {
     var joinQuery = multiBulkQuery.join("");
-    var modifiedString = joinQuery.replace(/,\s*$/, "\n"+"]");
+    var modifiedString = joinQuery.replace(/[}",]/g, "");
     var CSV = modifiedString;
     var uri = "data:text/csv;charset=utf-8," + escape(CSV);
     var link = document.createElement("a");
@@ -162,6 +170,9 @@ function downloadJSON(){
 */
 function addBulk(bulkType){
   var query = getBulkQuery(bulkType);
+  if (bulkType === "single"){
+    document.getElementById("select").disabled = true;
+  }
   var toAdd = [];
   toAdd += "<div class='form-group'  id='bulkList' style='width: 30em; float:right; margin-right:20%'>";
   toAdd += "<label>List of Queries</label>";
@@ -172,6 +183,14 @@ function addBulk(bulkType){
 }
 
 // When entering a value that is not 0-9 the field resets
-$("#IndustryCode").keyup(function() {
-    $("#IndustryCode").val(this.value.match(/[0-9]*/));
+$("#industryCode").keyup(function() {
+    $("#industryCode").val(this.value.match(/[0-9]*/));
 });
+
+$("#vatNumber").keyup(function() {
+    $("#vatNumber").val(this.value.match(/[0-9]*/));
+});
+
+$("#select").change(function () {
+       document.getElementById("selectEntry").placeholder="Enter "+ document.getElementById("select").value.toString();
+   });
