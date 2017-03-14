@@ -13,9 +13,9 @@ var firstUse = 1;
   *
 */
 function getBulkQuery(bulkType){
-  var selectCategory = document.getElementById("select").value.toString();
   if (firstUse === 1){
     if (bulkType === "single"){
+      var selectCategory = document.getElementById("select").value.toString();
       multiBulkQuery.push(selectCategory+"\n");
     }
     else {
@@ -30,6 +30,7 @@ function getBulkQuery(bulkType){
 
   switch(bulkType){
     case "single":
+      selectCategory = document.getElementById("select").value.toString();
       var selectValue = document.getElementById("selectEntry").value.toString();
       values = [[selectCategory+"=",selectValue]];
     break;
