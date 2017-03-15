@@ -2,6 +2,16 @@
 var multiBulkQuery = [];
 var firstUse = true;
 
+function firstRun(bulkType){
+  if (bulkType === "single" && firstUse){
+    var selectCategory = document.getElementById("select").value.toString();
+    multiBulkQuery.push(selectCategory+"\n");
+  }
+  else if (bulkType ==="multi" && firstUse){
+    multiBulkQuery.push("["+"\n");
+  }
+}
+
 /**
   * @function getBulkQuery(bulkType)
   *
@@ -13,7 +23,6 @@ var firstUse = true;
   *
 */
 function getBulkQuery(bulkType){
-  var selectCategory;
   firstRun(bulkType);
   firstUse=false;
   var values = [];
@@ -71,16 +80,6 @@ function getBulkQuery(bulkType){
     query = arr.join(""); // Join the array with no seperator
   }
   return query;
-}
-
-function firstRun(bulkType){
-  if (bulkType === "single" && firstUse){
-    selectCategory = document.getElementById("select").value.toString();
-    multiBulkQuery.push(selectCategory+"\n");
-  }
-  else if (bulkType ==="multi" && firstUse){
-    multiBulkQuery.push("["+"\n");
-  }
 }
 
 /**
