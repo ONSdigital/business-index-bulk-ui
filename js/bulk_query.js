@@ -1,6 +1,6 @@
 //global variable for array used throughout
 var multiBulkQuery = [];
-var firstUse = 1;
+var firstUse = true;
 
 /**
   * @function getBulkQuery(bulkType)
@@ -14,18 +14,13 @@ var firstUse = 1;
 */
 function getBulkQuery(bulkType){
   var selectCategory;
-  if (bulkType === "single" && firstUse === 1){
-    selectCategory = document.getElementById("select").value.toString();
-    multiBulkQuery.push(selectCategory+"\n");
-  }
-  else if (bulkType ==="multi" && firstUse ===1){
-    multiBulkQuery.push("["+"\n");
-  }
-  firstUse=0;
+  firstRun(bulkType);
+  firstUse=false;
   var values = [];
   var arr = [];
   var query;
   var valid = false;
+  var pushOnce = true;
 
   switch(bulkType){
     case "single":
@@ -44,28 +39,30 @@ function getBulkQuery(bulkType){
       var turnover = document.getElementById("turnover").value.toString();
       var tradingStatus = document.getElementById("tradingstatus").value.toString();
       var postCode = document.getElementById("PostCode").value.toString();
-      values = [["EmploymentBands=",employmentBand,"\""],
-                    ["LegalStatus=",legalStatus,"\""],
-                    ["Turnover=",turnover,"\""],
-                    ["TradingStatus=",tradingStatus,"\""],
-                    ["BusinessName=",businessName,"\""],
-                    ["IndustryCode=",industryCode,"\""],
-                    ["VatRefs=",vatNumber,"\""],
-                    ["PayeRefs=",payeReference,"\""],
-                    ["PostCode=",postCode],"\""];
+      values = [["EmploymentBands=",employmentBand],
+                    ["LegalStatus=",legalStatus],
+                    ["Turnover=",turnover],
+                    ["TradingStatus=",tradingStatus],
+                    ["BusinessName=",businessName],
+                    ["IndustryCode=",industryCode],
+                    ["VatRefs=",vatNumber],
+                    ["PayeRefs=",payeReference],
+                    ["PostCode=",postCode]];
     break;
   }
-  if (bulkType === "multi"){
-    arr.push("{\"request\": \"");
-  }
+
   // Form the query:
   for(var x in values){
-    // Check to see if inputs are empty
-    if (values[x][1] !== "" && typeof values[x][1] !== "undefined"){
-      valid = true;
-      arr.push(values[x][0]);
-      arr.push(values[x][1]);
-      arr.push(" AND ");
+      // Check to see if inputs are empty
+      if (values[x][1] !== ""){
+        if (bulkType === "multi" && pushOnce){
+          arr.push("{\"request\": \"");
+          pushOnce = false;
+        }
+        valid = true;
+        arr.push(values[x][0]);
+        arr.push(values[x][1]);
+        arr.push(" AND ");
     }
   }
   arr.pop();
@@ -76,6 +73,15 @@ function getBulkQuery(bulkType){
   return query;
 }
 
+function firstRun(bulkType){
+  if (bulkType === "single" && firstUse){
+    selectCategory = document.getElementById("select").value.toString();
+    multiBulkQuery.push(selectCategory+"\n");
+  }
+  else if (bulkType ==="multi" && firstUse){
+    multiBulkQuery.push("["+"\n");
+  }
+}
 
 /**
   * @function createBulkList(toAdd, bulkType)
@@ -175,7 +181,7 @@ function addBulk(bulkType){
   var toAdd = [];
   toAdd += "<div class='form-group'  id='bulkList' style='width: 30em; float:right; margin-right:20%'>";
   toAdd += "<label>List of Queries</label>";
-  if (query !== ""){
+  if (query !== "" && typeof query !== "undefined"){
       multiBulkQuery.push(query+"\n");
     }
   createBulkList(toAdd);
