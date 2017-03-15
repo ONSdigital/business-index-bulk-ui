@@ -42,21 +42,23 @@ function getBulkQuery(bulkType){
       var businessName = document.getElementById("businessName").value.toString();
       var industryCode = document.getElementById("industryCode").value.toString();
       var vatNumber = document.getElementById("vatNumber").value.toString();
+      var companyNumber = document.getElementById("companyNumber").value.toString();
       var payeReference = document.getElementById("payeReference").value.toString();
       var employmentBand = document.getElementById("employmentband").value.toString();
       var legalStatus = document.getElementById("legalStatus").value.toString();
       var turnover = document.getElementById("turnover").value.toString();
       var tradingStatus = document.getElementById("tradingstatus").value.toString();
       var postCode = document.getElementById("PostCode").value.toString();
-      values = [["EmploymentBands=",employmentBand],
-                    ["LegalStatus=",legalStatus],
-                    ["Turnover=",turnover],
-                    ["TradingStatus=",tradingStatus],
-                    ["BusinessName=",businessName],
-                    ["IndustryCode=",industryCode],
-                    ["VatRefs=",vatNumber],
-                    ["PayeRefs=",payeReference],
-                    ["PostCode=",postCode]];
+      values = [["BusinessName=",businessName],
+                ["IndustryCode=",industryCode],
+                ["VatRefs=",vatNumber],
+                ["CompanyNo=",companyNumber],
+                ["PayeRefs=",payeReference],
+                ["EmploymentBands=",employmentBand],
+                ["LegalStatus=",legalStatus],
+                ["Turnover=",turnover],
+                ["TradingStatus=",tradingStatus],
+                ["PostCode=",postCode]];
     break;
   }
 
