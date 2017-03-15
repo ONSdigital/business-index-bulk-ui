@@ -18,7 +18,7 @@ function getBulkQuery(bulkType){
     selectCategory = document.getElementById("select").value.toString();
     multiBulkQuery.push(selectCategory+"\n");
   }
-  else if bulkType ==="multi" && firstUse ===1{
+  else if (bulkType ==="multi" && firstUse ===1){
     multiBulkQuery.push("["+"\n");
   }
   firstUse=0;
