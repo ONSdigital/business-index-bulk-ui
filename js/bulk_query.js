@@ -13,19 +13,16 @@ var firstUse = 1;
   *
 */
 function getBulkQuery(bulkType){
-  if (firstUse === 1){
-    if (bulkType === "single"){
-      var selectCategory = document.getElementById("select").value.toString();
-      multiBulkQuery.push(selectCategory+"\n");
-    }
-    else {
-      multiBulkQuery.push("["+"\n");
-    }
+  var selectCategory;
+  if (bulkType === "single" && firstUse === 1){
+    selectCategory = document.getElementById("select").value.toString();
+    multiBulkQuery.push(selectCategory+"\n");
+  }
+  else if bulkType ==="multi" && firstUse ===1{
+    multiBulkQuery.push("["+"\n");
   }
   firstUse=0;
   var values = [];
-  var value1 = [];
-  var value2 = [];
   var arr = [];
   var query;
   var valid = false;
@@ -34,9 +31,7 @@ function getBulkQuery(bulkType){
     case "single":
       selectCategory = document.getElementById("select").value.toString();
       var selectValue = document.getElementById("selectEntry").value.toString();
-      //values = [[selectCategory+"=",selectValue]];
-      value1 = selectCategory+"=";
-      value2 = selectValue;
+      values = [[selectCategory+"=",selectValue]];
     break;
 
     case "multi":
@@ -49,46 +44,27 @@ function getBulkQuery(bulkType){
       var turnover = document.getElementById("turnover").value.toString();
       var tradingStatus = document.getElementById("tradingstatus").value.toString();
       var postCode = document.getElementById("PostCode").value.toString();
-      // values = [["EmploymentBands=",employmentBand,"\""],
-      //               ["LegalStatus=",legalStatus,"\""],
-      //               ["Turnover=",turnover,"\""],
-      //               ["TradingStatus=",tradingStatus,"\""],
-      //               ["BusinessName=",businessName,"\""],
-      //               ["IndustryCode=",industryCode,"\""],
-      //               ["VatRefs=",vatNumber,"\""],
-      //               ["PayeRefs=",payeReference,"\""],
-      //               ["PostCode=",postCode],"\""];
-    value1 =  [["EmploymentBands="],
-                  ["LegalStatus="],
-                  ["Turnover="],
-                  ["TradingStatus="],
-                  ["BusinessName="],
-                  ["IndustryCode="],
-                  ["VatRefs="],
-                  ["PayeRefs="],
-                  ["PostCode="]];
-    value2 =  [[employmentBand],
-                  [legalStatus],
-                  [turnover],
-                  [tradingStatus],
-                  [businessName],
-                  [industryCode],
-                  [vatNumber],
-                  [payeReference],
-                  [postCode]];
+      values = [["EmploymentBands=",employmentBand,"\""],
+                    ["LegalStatus=",legalStatus,"\""],
+                    ["Turnover=",turnover,"\""],
+                    ["TradingStatus=",tradingStatus,"\""],
+                    ["BusinessName=",businessName,"\""],
+                    ["IndustryCode=",industryCode,"\""],
+                    ["VatRefs=",vatNumber,"\""],
+                    ["PayeRefs=",payeReference,"\""],
+                    ["PostCode=",postCode],"\""];
     break;
   }
   if (bulkType === "multi"){
     arr.push("{\"request\": \"");
   }
   // Form the query:
-  for(var x in value2){
+  for(var x in values){
     // Check to see if inputs are empty
-    if (value2[x] !== ""){
-      console.log(value2[x])
+    if (values[x][1] !== "" && typeof values[x][1] !== "undefined"){
       valid = true;
-      arr.push(value1[x]);
-      arr.push(value2[x]);
+      arr.push(values[x][0]);
+      arr.push(values[x][1]);
       arr.push(" AND ");
     }
   }
