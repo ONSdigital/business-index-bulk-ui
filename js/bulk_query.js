@@ -13,14 +13,13 @@ var firstUse = 1;
   *
 */
 function getBulkQuery(bulkType){
-  if (firstUse === 1){
-    if (bulkType === "single"){
-      var selectCategory = document.getElementById("select").value.toString();
-      multiBulkQuery.push(selectCategory+"\n");
-    }
-    else {
-      multiBulkQuery.push("["+"\n");
-    }
+  var selectCategory;
+  if (bulkType === "single" && firstUse === 1){
+    selectCategory = document.getElementById("select").value.toString();
+    multiBulkQuery.push(selectCategory+"\n");
+  }
+  else if bulkType ==="multi" && firstUse ===1{
+    multiBulkQuery.push("["+"\n");
   }
   firstUse=0;
   var values = [];
@@ -62,7 +61,7 @@ function getBulkQuery(bulkType){
   // Form the query:
   for(var x in values){
     // Check to see if inputs are empty
-    if (values[x][1] !== "" && values[x][1] !== undefined){
+    if (values[x][1] !== "" && typeof values[x][1] !== "undefined"){
       valid = true;
       arr.push(values[x][0]);
       arr.push(values[x][1]);
