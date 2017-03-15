@@ -95,12 +95,10 @@ function getBulkQuery(bulkType){
   *
 */
 function createBulkList(toAdd){
-  toAdd = toAdd;
-  var x;
-    for (x = 1; x < multiBulkQuery.length; x++){
+    for (var x = 1; x < multiBulkQuery.length; x++){
       var replaced = multiBulkQuery[x].replace(/}|{|,|:|"|"|request/g,"");
       toAdd += "<h3>" +x.toString() + "." + replaced + "</h3>";
-      toAdd += "<button type='button' class='btn btn-primary' id='search' onclick='deleteBulk(' + x.toString() + ');'>Delete</button>";
+      toAdd += "<button type='button' class='btn btn-primary' onclick='deleteBulk("+x.toString()+");'>Delete</button>";
       toAdd += "<br>";
   }
   toAdd += "</div>";
@@ -122,7 +120,6 @@ function deleteBulk(currentIndex){
   var toAdd = [];
   toAdd += "<div class='form-group'  id='bulkList' style='width: 25em; float:right; margin-right:20%'>";
   toAdd += "<label>List of Queries</label>";
-  currentIndex = currentIndex;
   multiBulkQuery.splice(currentIndex,1);
   createBulkList(toAdd,multiBulkQuery);
 }
