@@ -4,8 +4,8 @@ var firstUse = true;
 
 function firstRun(bulkType){
   if (bulkType === "single" && firstUse){
-    var selectCategory = document.getElementById("select").value.toString();
-    multiBulkQuery.push(selectCategory+"\n");
+    var selectHeader = document.getElementById("select").value.toString();
+    multiBulkQuery.push(selectHeader+"\n");
   }
   else if (bulkType ==="multi" && firstUse){
     multiBulkQuery.push("["+"\n");
@@ -33,7 +33,7 @@ function getBulkQuery(bulkType){
 
   switch(bulkType){
     case "single":
-      selectCategory = document.getElementById("select").value.toString();
+      var selectCategory = document.getElementById("select").value.toString();
       var selectValue = document.getElementById("selectEntry").value.toString();
       values = [[selectCategory+"=",selectValue]];
     break;
