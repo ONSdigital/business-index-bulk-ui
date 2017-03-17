@@ -28,8 +28,8 @@ function getBulkQuery(bulkType){
   var values = [];
   var arr = [];
   var query;
-  var valid = false;
   var pushOnce = true;
+  var queryEnd = "";
 
   switch(bulkType){
     case "single":
@@ -49,6 +49,7 @@ function getBulkQuery(bulkType){
       var turnover = document.getElementById("turnover").value.toString();
       var tradingStatus = document.getElementById("tradingstatus").value.toString();
       var postCode = document.getElementById("PostCode").value.toString();
+      queryEnd = "\"},";
       values = [["BusinessName=",businessName],
                 ["IndustryCode=",industryCode],
                 ["VatRefs=",vatNumber],
@@ -70,17 +71,17 @@ function getBulkQuery(bulkType){
           arr.push("{\"request\": \"");
           pushOnce = false;
         }
-        valid = true;
         arr.push(values[x][0]);
         arr.push(values[x][1]);
         arr.push(" AND ");
     }
+    else {
+        queryEnd = "";
+    }
   }
   arr.pop();
-  if (valid){
-    arr.push("\"},");
-    query = arr.join(""); // Join the array with no seperator
-  }
+  arr.push(queryEnd);
+  query = arr.join(""); // Join the array with no seperator
   return query;
 }
 
