@@ -14,7 +14,6 @@ function getBulkMatch(bulkType){
 }
 
 
-
 function downloadCSV(){
   if (multiBulkQuery.length !== 0)
   {
@@ -28,6 +27,10 @@ function downloadCSV(){
     document.body.appendChild(link); // Required for FF
     link.click(); // This will download the data file named "my_data.csv".
   }
+}
+
+function disableMatch(){
+  document.getElementById("select").disabled = true;
 }
 
 $("#select").change(function () {
