@@ -131,7 +131,7 @@
             <option value="I">Insolvent</option>
           </select><br>
 
-          <button type="button" class="btn btn-primary" onclick="addBulk('multi');">Add to Bulk Match</button>
+          <button type="button" class="btn btn-primary" onclick="getBulkQuery('multi');">Add to Bulk Match</button>
           <button type="button" class="btn btn-primary" onclick="downloadJSON();">Download List of Queries</button>
           <button type="reset" id="csv"class="btn btn-secondary">Clear</button>
 
@@ -146,6 +146,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/bulk_query.js"></script>
+    <script src="../js/bulkQuery.js"></script>
+    <script src="../js/sharedBulk.js"></script>
   </body>
 </html>
