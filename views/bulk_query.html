@@ -60,6 +60,9 @@
           <label>Business Name</label>
           <input class="form-control" id="businessName" maxlength="50" placeholder="Enter Business Name"><br>
 
+          <label>Company House Number</label>
+          <input class="form-control" id="companyNumber" maxlength="10" placeholder="Enter Company House Number"><br>
+
           <label>Industry Code</label>
           <input class="form-control" id="industryCode" maxlength="5" placeholder="Enter Industry Code"><br>
 
@@ -70,7 +73,7 @@
           <input class="form-control" id="payeReference" maxlength="10" placeholder="Enter PAYE Reference"><br>
 
           <label for="PostCode">Postcode</label>
-          <input type="PostCode" class="form-control" id="PostCode" maxlength="2" placeholder="Enter one or two character(s) of the Postcode Area"><br>
+          <input type="PostCode" class="form-control" id="PostCode" maxlength="8" placeholder="Enter Postcode"><br>
 
           <label for="employmentbandlabel">Employment Band</label>
           <select class="form-control" id="employmentband">
@@ -128,7 +131,7 @@
             <option value="I">Insolvent</option>
           </select><br>
 
-          <button type="button" class="btn btn-primary" onclick="addBulk('multi');">Add to Bulk Match</button>
+          <button type="button" class="btn btn-primary" onclick="getBulkQuery('multi');">Add to Bulk Match</button>
           <button type="button" class="btn btn-primary" onclick="downloadJSON();">Download List of Queries</button>
           <button type="reset" id="csv"class="btn btn-secondary">Clear</button>
 
@@ -143,6 +146,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/bulk_query.js"></script>
+    <script src="../js/sharedBulk.js"></script>
   </body>
 </html>
