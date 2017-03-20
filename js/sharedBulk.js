@@ -157,6 +157,11 @@ function downloadJSON(){
   }
 }
 
+function clearMatch(){
+  var field= document.getElementById('selectEntry');
+  field.value= field.defaultValue;
+}
+
 function disableMatch(){
   document.getElementById("select").disabled = true;
 }
