@@ -58,7 +58,7 @@
       <h1 class="page-header">Bulk Match</h1>
       <div class="form-group" style="width: 30em; float:left;">
 
-        <select class="form-control" id=select>
+        <select onchange="clearMatch();changeMaxInput();" class="form-control" id=select>
           <option value="BusinessName">Business Name</option>
           <option value="IndustryCode">Industry Code</option>
           <option value="VatRefs">Vat Number</option>

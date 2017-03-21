@@ -162,6 +162,27 @@ function clearMatch(){
   field.value= field.defaultValue;
 }
 
+function changeMaxInput(){
+  var selectChoice = document.getElementById("select").value;
+  switch(selectChoice){
+    case "IndustryCode":
+      document.getElementById("selectEntry").maxLength = 5;
+      break;
+    case "VatRefs":
+      document.getElementById("selectEntry").maxLength = 12;
+      break;
+    case "PayeRefs":
+      document.getElementById("selectEntry").maxLength = 10;
+      break;
+    case "CompanyNo":
+      document.getElementById("selectEntry").maxLength = 10;
+      break;
+    default:
+      document.getElementById("selectEntry").maxLength = 50;
+      break;
+  }
+}
+
 function disableMatch(){
   document.getElementById("select").disabled = true;
 }
