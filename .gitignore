@@ -1,4 +1,4 @@
-ee http://help.github.com/ignore-files/ for more about ignoring files.
+_Store
 
 # dependencies
 
@@ -6,6 +6,6 @@ ee http://help.github.com/ignore-files/ for more about ignoring files.
 build
 
 # misc
-.DS_Store
+*.DS_Store
 
 
