@@ -116,12 +116,7 @@ function getBulkQuery(bulkType){
   var legalStatus = document.getElementById("legalStatus").value.toString();
   var turnover = document.getElementById("turnover").value.toString();
   var tradingStatus = document.getElementById("tradingstatus").value.toString();
-  var postCodeToggle = document.getElementById("PostCodeToggle").checked;
   var postCode = document.getElementById("PostCode").value.toString();
-
-  if (postCodeToggle){
-    postCode = "\""+postCode+"\""
-  }
 
   queryEnd = "\"";
   values = [["BusinessName:","("+businessName+")"],
