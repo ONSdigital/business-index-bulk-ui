@@ -45,7 +45,7 @@ function generateList(values, queryEnd, bulkType, firstUse)
   for(var x in values){
     // Check to see if inputs are empty
     if (bulkType === "multi" && firstUse &&  values[x][1] !== ""){
-      arr.push('"');
+      arr.push("\"");
       firstUse = false;
       arr.push(values[x][0]);
       arr.push(values[x][1]);
@@ -117,7 +117,7 @@ function getBulkQuery(bulkType){
   var turnover = document.getElementById("turnover").value.toString();
   var tradingStatus = document.getElementById("tradingstatus").value.toString();
   var postCode = document.getElementById("PostCode").value.toString();
-  queryEnd = '"';
+  queryEnd = "\"";
   values = [["BusinessName=",businessName],
             ["IndustryCode=",industryCode],
             ["VatRefs=",vatNumber],
