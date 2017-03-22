@@ -24,12 +24,13 @@
   <header role="banner" id="global-header" class="">
     <div class="header-wrapper">
     <div class="header-global">
-      <div class="header-logo">
-        <a href="#" title="Go to the homepage" id="logo" class="content">
-        <img src="../img/orglogo.svg" width="240" height="135" alt="Office for National Statistics"> </a>
-      </div>
-      <div class="banner-text">
-        <h1> EXAMPLE UI </h1>
+        <div class="header-logo">
+          <a href="#" title="Go to the homepage" id="logo" class="content">
+          <img src="../img/orglogo.svg" width="240" height="135" alt="Office for National Statistics"> </a>
+        </div>
+        <div class="banner-text">
+          <h1> EXAMPLE UI </h1>
+        </div>
       </div>
     </div>
   </header>
@@ -53,32 +54,34 @@
 
   <div class="container-fluid">
   <div class="col-sm-9 col-sm-offset-3 col-md-12 col-md-offset-0 main">
-    <form>
-    <div class="container" style:"overflow:hidden">
-      <h1 class="page-header">Bulk Match</h1>
-      <div class="form-group" style="width: 30em; float:left;">
+      <form onkeypress="return event.keyCode !== 13">
+        <div class="container" style:"overflow:hidden">
+        <h1 class="page-header">Bulk Match</h1>
+          <div class="form-group" style="width: 30em; float:left;">
 
-        <select onchange="clearMatch();changeMaxInput();" class="form-control" id=select>
-          <option value="BusinessName">Business Name</option>
-          <option value="IndustryCode">Industry Code</option>
-          <option value="VatRefs">Vat Number</option>
-          <option value="PayeRefs">PAYE Reference</option>
-          <option value="CompanyNo">Company House Number</option>
-        </select>
-        <br>
+            <select onchange="clearMatch();changeMaxInput();" class="form-control" id=select>
+              <option value="BusinessName">Business Name</option>
+              <option value="IndustryCode">Industry Code</option>
+              <option value="VatRefs">Vat Number</option>
+              <option value="PayeRefs">PAYE Reference</option>
+              <option value="CompanyNo">Company House Number</option>
+            </select>
+            <br>
 
-        <input class="form-control" id="selectEntry" maxlength="50" placeholder="Enter BusinessName">
-        <br>
+            <input class="form-control" id="selectEntry" maxlength="50" placeholder="Enter BusinessName">
+            <br>
 
-        <button type="button" class="btn btn-primary" onclick="getBulkMatch('single');disableMatch();">Add to Bulk Match</button>
-        <button type="button" class="btn btn-primary" onclick="downloadCSV();">Download List of Queries</button>
-        <button type="button" class="btn btn-secondary" onclick="clearMatch();">Clear</button>
+            <button type="button" class="btn btn-primary" onclick="getBulkMatch('single');disableMatch();">Add to Bulk Match</button>
+            <button type="button" class="btn btn-primary" onclick="downloadCSV();">Download List of Queries</button>
+            <button type="button" class="btn btn-secondary" onclick="clearMatch();">Clear</button>
 
-        <br><br>
+            <br><br>
+      </form>
       </div>
       <div id="bulkList"></div>
     </div>
   </div>
+</div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
