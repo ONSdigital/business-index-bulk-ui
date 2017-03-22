@@ -1,0 +1,11 @@
+_Store
+
+# dependencies
+
+# production
+build
+
+# misc
+*.DS_Store
+
+

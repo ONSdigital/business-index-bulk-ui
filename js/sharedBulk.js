@@ -15,7 +15,7 @@ function getInputs(bulkType){
 
 function createBulkList(toAdd){
     for (var x = 1; x < multiBulkQuery.length; x++){
-      var replaced = multiBulkQuery[x].replace(/}|{|,|:|"|"|request/g,"");
+      var replaced = multiBulkQuery[x].replace(/}|{|,|"|"|\)|\(/g,"");
       toAdd += "<h3>" + x.toString() + "." + replaced + "</h3><button type='button' class='btn btn-primary' onclick='deleteBulk("+x.toString()+");'>Delete</button><br>";
   }
   toAdd += "</div>";
@@ -44,19 +44,19 @@ function generateList(values, queryEnd, bulkType, firstUse)
   // Form the query:
   for(var x in values){
     // Check to see if inputs are empty
-    if (bulkType === "multi" && firstUse &&  values[x][1] !== ""){
+    if (bulkType === "multi" && firstUse &&  values[x][1] !== "" && values[x][1] !== "()"){
       arr.push("\"");
       firstUse = false;
       arr.push(values[x][0]);
       arr.push(values[x][1]);
       arr.push(" AND ");
     }
-    else if (bulkType === "multi" && values[x][1] !== ""){
+    else if (bulkType === "multi" && values[x][1] !== "" && values[x][1] !== "()"){
       arr.push(values[x][0]);
       arr.push(values[x][1]);
       arr.push(" AND ");
     }
-    else if (values[x][1] !== ""){
+    else if (bulkType === "single" && values[x][1] !== ""){
       arr.push(values[x][1]);
       arr.push(" AND ")
     }
@@ -116,18 +116,24 @@ function getBulkQuery(bulkType){
   var legalStatus = document.getElementById("legalStatus").value.toString();
   var turnover = document.getElementById("turnover").value.toString();
   var tradingStatus = document.getElementById("tradingstatus").value.toString();
+  var postCodeToggle = document.getElementById("PostCodeToggle").checked;
   var postCode = document.getElementById("PostCode").value.toString();
+
+  if (postCodeToggle){
+    postCode = "\""+postCode+"\""
+  }
+
   queryEnd = "\"";
-  values = [["BusinessName=",businessName],
-            ["IndustryCode=",industryCode],
-            ["VatRefs=",vatNumber],
-            ["CompanyNo=",companyNumber],
-            ["PayeRefs=",payeReference],
-            ["EmploymentBands=",employmentBand],
-            ["LegalStatus=",legalStatus],
-            ["Turnover=",turnover],
-            ["TradingStatus=",tradingStatus],
-            ["PostCode=",postCode]];
+  values = [["BusinessName:","("+businessName+")"],
+            ["IndustryCode:",industryCode],
+            ["VatRefs:",vatNumber],
+            ["CompanyNo:",companyNumber],
+            ["PayeRefs:",payeReference],
+            ["EmploymentBands:",employmentBand],
+            ["LegalStatus:",legalStatus],
+            ["Turnover:",turnover],
+            ["TradingStatus:",tradingStatus],
+            ["PostCode:",postCode]];
   generateList(values, queryEnd, bulkType, firstUse);
 }
 
