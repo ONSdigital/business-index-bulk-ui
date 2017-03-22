@@ -8,7 +8,7 @@ function getInputs(bulkType){
     multiBulkQuery.push(selectCategory+"\n");
   }
   else if (bulkType ==="multi" && firstRun ===1){
-    multiBulkQuery.push("["+"\n");
+    multiBulkQuery.push("Request"+"\n");
   }
 }
 
@@ -45,7 +45,7 @@ function generateList(values, queryEnd, bulkType, firstUse)
   for(var x in values){
     // Check to see if inputs are empty
     if (bulkType === "multi" && firstUse &&  values[x][1] !== ""){
-      arr.push("{\"request\": \"");
+      arr.push("\"");
       firstUse = false;
       arr.push(values[x][0]);
       arr.push(values[x][1]);
@@ -117,7 +117,7 @@ function getBulkQuery(bulkType){
   var turnover = document.getElementById("turnover").value.toString();
   var tradingStatus = document.getElementById("tradingstatus").value.toString();
   var postCode = document.getElementById("PostCode").value.toString();
-  queryEnd = "\"},";
+  queryEnd = "\"";
   values = [["BusinessName=",businessName],
             ["IndustryCode=",industryCode],
             ["VatRefs=",vatNumber],
@@ -140,13 +140,13 @@ function downloadCSV(){
     var uri = "data:text/csv;charset=utf-8," + escape(CSV);
     var link = document.createElement("a");
     link.setAttribute("href", uri);
-    link.setAttribute("download", "my_data.csv");
+    link.setAttribute("download", "bulk_match.csv");
     document.body.appendChild(link); // Required for FF
     link.click(); // This will download the data file named "my_data.csv".
   }
 }
 
-function downloadJSON(){
+function downloadQuery(){
   if (multiBulkQuery.length !== 0)
   {
     var joinQuery =  multiBulkQuery.join("");
@@ -155,7 +155,7 @@ function downloadJSON(){
     var uri = "data:text/json;charset=utf-8," + escape(JSON);
     var link = document.createElement("a");
     link.setAttribute("href", uri);
-    link.setAttribute("download", "my_data.json");
+    link.setAttribute("download", "bulk_Query.csv");
     document.body.appendChild(link); // Required for FF
     link.click(); // This will download the data file named "my_data.csv".
   }
