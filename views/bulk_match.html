@@ -58,7 +58,7 @@
       <h1 class="page-header">Bulk Match</h1>
       <div class="form-group" style="width: 30em; float:left;">
 
-        <select class="form-control" id=select>
+        <select onchange="clearMatch();changeMaxInput();" class="form-control" id=select>
           <option value="BusinessName">Business Name</option>
           <option value="IndustryCode">Industry Code</option>
           <option value="VatRefs">Vat Number</option>
@@ -72,7 +72,7 @@
 
         <button type="button" class="btn btn-primary" onclick="getBulkMatch('single');disableMatch();">Add to Bulk Match</button>
         <button type="button" class="btn btn-primary" onclick="downloadCSV();">Download List of Queries</button>
-        <button type="reset" id="csv"class="btn btn-secondary">Clear</button>
+        <button type="button" class="btn btn-secondary" onclick="clearMatch();">Clear</button>
 
         <br><br>
       </div>

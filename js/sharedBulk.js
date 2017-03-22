@@ -51,10 +51,14 @@ function generateList(values, queryEnd, bulkType, firstUse)
       arr.push(values[x][1]);
       arr.push(" AND ");
     }
-    else if (values[x][1] !== ""){
+    else if (bulkType === "multi" && values[x][1] !== ""){
       arr.push(values[x][0]);
       arr.push(values[x][1]);
       arr.push(" AND ");
+    }
+    else if (values[x][1] !== ""){
+      arr.push(values[x][1]);
+      arr.push(" AND ")
     }
   }
   arr.pop();
@@ -154,6 +158,32 @@ function downloadJSON(){
     link.setAttribute("download", "my_data.json");
     document.body.appendChild(link); // Required for FF
     link.click(); // This will download the data file named "my_data.csv".
+  }
+}
+
+function clearMatch(){
+  var field= document.getElementById("selectEntry");
+  field.value= field.defaultValue;
+}
+
+function changeMaxInput(){
+  var selectChoice = document.getElementById("select").value;
+  switch(selectChoice){
+    case "IndustryCode":
+      document.getElementById("selectEntry").maxLength = 5;
+      break;
+    case "VatRefs":
+      document.getElementById("selectEntry").maxLength = 12;
+      break;
+    case "PayeRefs":
+      document.getElementById("selectEntry").maxLength = 10;
+      break;
+    case "CompanyNo":
+      document.getElementById("selectEntry").maxLength = 10;
+      break;
+    default:
+      document.getElementById("selectEntry").maxLength = 50;
+      break;
   }
 }
 
