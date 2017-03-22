@@ -51,9 +51,14 @@ function generateList(values, queryEnd, bulkType, firstUse)
       arr.push(values[x][1]);
       arr.push(" AND ");
     }
-    else if (values[x][1] !== ""){
+    else if (bulkType === "multi" && values[x][1] !== ""){
+      arr.push(values[x][0]);
       arr.push(values[x][1]);
       arr.push(" AND ");
+    }
+    else if (values[x][1] !== ""){
+      arr.push(values[x][1]);
+      arr.push(" AND ")
     }
   }
   arr.pop();
