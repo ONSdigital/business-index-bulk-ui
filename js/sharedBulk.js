@@ -139,6 +139,12 @@ function downloadCSV(){
 
 /*********HTML User Functionality**************/
 
+function disableMatch(){
+  if(document.getElementById("selectEntry").value !== ""){
+    document.getElementById("select").disabled = true;
+  }
+}
+
 function clearMatch(){
   var field= document.getElementById("selectEntry");
   field.value= field.defaultValue;
@@ -162,12 +168,6 @@ function changeMaxInput(){
     default:
       document.getElementById("selectEntry").maxLength = 50;
       break;
-  }
-}
-
-function disableMatch(){
-  if(document.getElementById("selectEntry").value !== ""){
-    document.getElementById("select").disabled = true;
   }
 }
 
