@@ -7,7 +7,7 @@ function getInputs(bulkType){
     selectCategory = document.getElementById("select").value.toString();
     multiBulkQuery.push(selectCategory+"\n");
   }
-  else if (bulkType ==="multi" && firstRun ===1){
+  else if (bulkType ==="multi" && firstRun === 1 || bulkType === "range" && firstRun === 1){
     multiBulkQuery.push("Request"+"\n");
   }
 }
@@ -60,6 +60,12 @@ function generateList(values, queryEnd, bulkType, firstUse)
       arr.push(values[x][1]);
       arr.push(" AND ")
     }
+    else if (bulkType === "range" && values[x][1] !== "" && values[x][2] !== ""){
+      arr.push(values[x][0]+"[");
+      arr.push(values[x][1]+" TO ");
+      arr.push(values[x][2]+"]");
+      arr.push(" AND ")
+    }
   }
   arr.pop();
   arr.push(queryEnd);
@@ -95,6 +101,18 @@ function getBulkMatch(bulkType){
   var selectCategory = document.getElementById("select").value.toString();
   var selectValue = document.getElementById("selectEntry").value.toString();
   var values = [[selectCategory+"=",selectValue]];
+  generateList(values, queryEnd, bulkType, firstUse);
+}
+
+function getRange(bulkType){
+  getInputs(bulkType);
+  firstRun=0;
+  var queryEnd = "";
+  var query;
+  var firstUse = true;
+  var industryCode1 = document.getElementById("industryCode").value.toString();
+  var industryCode2 = document.getElementById("industryCode2").value.toString();
+  var values = [["IndustryCode:",industryCode1,industryCode2]];
   generateList(values, queryEnd, bulkType, firstUse);
 }
 
@@ -198,6 +216,10 @@ $("#select").change(function () {
 
 $("#industryCode").keyup(function() {
  $("#industryCode").val(this.value.match(/[0-9]*/));
+});
+
+$("#industryCode2").keyup(function() {
+ $("#industryCode2").val(this.value.match(/[0-9]*/));
 });
 
 $("#vatNumber").keyup(function() {
