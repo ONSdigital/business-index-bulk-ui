@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../img/favicon.ico">
 
-    <title>Bulk Match</title>
+    <title>Range Search</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -44,9 +44,9 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
           <li><a href="../index.html">Home</a></li>
-          <li class="active"><a href="bulk_match.html">Bulk Match</a></li>
+          <li><a href="bulk_match.html">Bulk Match</a></li>
           <li><a href="bulk_query.html">Bulk Query</a></li>
-          <li><a href="bulk_range.html">Range Search</a></li>
+          <li class="active"><a href="bulk_range.html">Range Search</a></li>
         </ul>
       </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->
@@ -57,24 +57,21 @@
   <div class="col-sm-9 col-sm-offset-3 col-md-12 col-md-offset-0 main">
       <form onkeypress="return event.keyCode !== 13">
         <div class="container" style:"overflow:hidden">
-        <h1 class="page-header">Bulk Match</h1>
+        <h1 class="page-header">Range Search</h1>
           <div class="form-group" style="width: 30em; float:left;">
 
-            <select onchange="clearMatch();changeMaxInput();" class="form-control" id=select>
-              <option value="BusinessName">Business Name</option>
-              <option value="IndustryCode">Industry Code</option>
-              <option value="VatRefs">Vat Number</option>
-              <option value="PayeRefs">PAYE Reference</option>
-              <option value="CompanyNo">Company Registration Number</option>
-            </select>
-            <br>
-
-            <input class="form-control" id="selectEntry" maxlength="50" placeholder="Enter BusinessName">
-            <br>
-
-            <button type="button" class="btn btn-primary" onclick="getBulkMatch('single');disableMatch();">Add to Bulk Match</button>
-            <button type="button" class="btn btn-primary" onclick="downloadCSV();">Download List of Queries</button>
-            <button type="button" class="btn btn-secondary" onclick="clearMatch();">Clear</button>
+            <div style="width: 15em; float: left;">
+                <label for="IndustryCode">Industry Code Min Range</label>
+                <input type="IndustryCode" class="form-control" id="industryCode" maxlength="5" placeholder="Enter Industry Code Number">
+            </div>
+            <div style="width: 15em; float: left;">
+                <label for="IndustryCode">Industry Code Max Range</label>
+                <input type="IndustryCode" class="form-control" id="industryCode2" maxlength="5" placeholder="Enter Industry Code Number">
+                <br>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="getRange('range');">Add to Bulk Match</button>
+            <button type="button" class="btn btn-primary" onclick="downloadQuery();">Download List of Queries</button>
+            <button type="reset" id="csv"class="btn btn-secondary">Clear</button>
 
             <br><br>
       </form>
