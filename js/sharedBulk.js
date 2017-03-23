@@ -6,31 +6,23 @@ function getInputs(bulkType){
   if (bulkType === "single" && firstRun === 1){
     selectCategory = document.getElementById("select").value.toString();
     multiBulkQuery.push(selectCategory+"\n");
+    firstRun=0;
   }
   else if (bulkType ==="multi" && firstRun === 1 || bulkType === "range" && firstRun === 1){
     multiBulkQuery.push("Request"+"\n");
+    firstRun=0;
   }
 }
 
-
 function createBulkList(toAdd){
-    for (var x = 1; x < multiBulkQuery.length; x++){
-      var replaced = multiBulkQuery[x].replace(/}|{|,|"|"|\)|\(/g,"");
-      toAdd += "<h3>" + x.toString() + "." + replaced + "</h3><button type='button' class='btn btn-primary' onclick='deleteBulk("+x.toString()+");'>Delete</button><br>";
+  for (var x = 1; x < multiBulkQuery.length; x++){
+    var replaced = multiBulkQuery[x].replace(/}|{|,|"|"|\)|\(/g,"");
+    toAdd += "<h3>" + x.toString() + "." + replaced + "</h3><button type='button' class='btn btn-primary' onclick='deleteBulk("+x.toString()+");'>Delete</button><br>";
   }
   toAdd += "</div>";
   document.getElementById("bulkList").innerHTML = toAdd;
 }
 
-/**
-  * @function addBulk(bulkType)
-  *
-  * @param {String} bulkType - Type of bulk
-  *
-  * @description Recieves user input and adds it to the
-  * bulk search and query lists where they will be injected into the HTML page
-  *
-*/
 function addBulk(query, bulkType){
   var toAdd = [];
   toAdd += "<div class='form-group'  id='bulkList' style='width: 30em; float:right; margin-right:20%'><label>List of Queries</label>";
@@ -38,15 +30,17 @@ function addBulk(query, bulkType){
   createBulkList(toAdd);
 }
 
-function generateList(values, queryEnd, bulkType, firstUse)
+function generateList(values, bulkType)
 {
   var arr = [];
+  var firstUse = true;
+  var queryEnd = "";
   // Form the query:
   for(var x in values){
-    // Check to see if inputs are empty
     if (bulkType === "multi" && firstUse &&  values[x][1] !== "" && values[x][1] !== "()"){
       arr.push("\"");
       firstUse = false;
+      queryEnd = "\"";
       arr.push(values[x][0]);
       arr.push(values[x][1]);
       arr.push(" AND ");
@@ -58,73 +52,52 @@ function generateList(values, queryEnd, bulkType, firstUse)
     }
     else if (bulkType === "single" && values[x][1] !== ""){
       arr.push(values[x][1]);
-      arr.push(" AND ")
+      arr.push(" AND ");
     }
     else if (bulkType === "range" && values[x][1] !== "" && values[x][2] !== ""){
       arr.push(values[x][0]+"[");
       arr.push(values[x][1]+" TO ");
       arr.push(values[x][2]+"]");
-      arr.push(" AND ")
+      arr.push(" AND ");
     }
   }
   arr.pop();
   arr.push(queryEnd);
-  var query = arr.join(""); // Join the array with no seperator
+  var query = arr.join("");
   if (query !== queryEnd && query !== ""){
     addBulk(query, bulkType);
   }
 }
 
-/**
-  * @function deleteBulk (currentIndex, bulkType)
-  *
-  * @param {Int} currentIndex - The selected index
-  *
-  * @param 2 {String} bulkType - type of bulk
-  *
-  * @description Deletes the selected query
-  *
-*/
 function deleteBulk(currentIndex){
   var toAdd = [];
   toAdd += "<div class='form-group'  id='bulkList' style='width: 30em; float:right; margin-right:20%'><label>List of Queries</label>";
   multiBulkQuery.splice(currentIndex,1);
+  if (multiBulkQuery.length === 1){
+    toAdd = "";
+  }
   createBulkList(toAdd);
 }
 
 function getBulkMatch(bulkType){
   getInputs(bulkType);
-  firstRun=0;
-  var queryEnd = "";
-  var query;
-  var firstUse = true;
   var selectCategory = document.getElementById("select").value.toString();
   var selectValue = document.getElementById("selectEntry").value.toString();
   var values = [[selectCategory+"=",selectValue]];
-  generateList(values, queryEnd, bulkType, firstUse);
+  generateList(values, bulkType);
 }
 
 function getRange(bulkType){
   getInputs(bulkType);
-  firstRun=0;
-  var queryEnd = "";
-  var query;
-  var firstUse = true;
   var industryCode1 = document.getElementById("industryCode").value.toString();
   var industryCode2 = document.getElementById("industryCode2").value.toString();
   var values = [["IndustryCode:",industryCode1,industryCode2]];
-  generateList(values, queryEnd, bulkType, firstUse);
+  generateList(values, bulkType);
 }
 
 function getBulkQuery(bulkType){
   getInputs(bulkType);
-  firstRun=0;
   var values = [];
-  var arr = [];
-  var query;
-  var queryEnd = "";
-  var firstUse = true;
-
   var businessName = document.getElementById("businessName").value.toString();
   var industryCode = document.getElementById("industryCode").value.toString();
   var vatNumber = document.getElementById("vatNumber").value.toString();
@@ -136,7 +109,6 @@ function getBulkQuery(bulkType){
   var tradingStatus = document.getElementById("tradingstatus").value.toString();
   var postCode = document.getElementById("PostCode").value.toString();
 
-  queryEnd = "\"";
   values = [["BusinessName:","("+businessName+")"],
             ["IndustryCode:",industryCode],
             ["VatRefs:",vatNumber],
@@ -147,11 +119,11 @@ function getBulkQuery(bulkType){
             ["Turnover:",turnover],
             ["TradingStatus:",tradingStatus],
             ["PostCode:",postCode]];
-  generateList(values, queryEnd, bulkType, firstUse);
+  generateList(values, bulkType);
 }
 
 function downloadCSV(){
-  if (multiBulkQuery.length !== 0)
+  if (multiBulkQuery.length !== 0 && multiBulkQuery.length !== 1)
   {
     var joinQuery = multiBulkQuery.join("");
     var modifiedString = joinQuery.replace(/[}",]/g, "");
@@ -159,26 +131,13 @@ function downloadCSV(){
     var uri = "data:text/csv;charset=utf-8," + escape(CSV);
     var link = document.createElement("a");
     link.setAttribute("href", uri);
-    link.setAttribute("download", "bulk_match.csv");
+    link.setAttribute("download", "query_list.csv");
     document.body.appendChild(link); // Required for FF
     link.click(); // This will download the data file named "my_data.csv".
   }
 }
 
-function downloadQuery(){
-  if (multiBulkQuery.length !== 0)
-  {
-    var joinQuery =  multiBulkQuery.join("");
-    var modifiedString = joinQuery.replace(/,\s*$/, "\n"+"]");
-    var JSON = modifiedString;
-    var uri = "data:text/json;charset=utf-8," + escape(JSON);
-    var link = document.createElement("a");
-    link.setAttribute("href", uri);
-    link.setAttribute("download", "bulk_Query.csv");
-    document.body.appendChild(link); // Required for FF
-    link.click(); // This will download the data file named "my_data.csv".
-  }
-}
+/*********HTML User Functionality**************/
 
 function clearMatch(){
   var field= document.getElementById("selectEntry");
@@ -206,22 +165,35 @@ function changeMaxInput(){
   }
 }
 
+var listener = document.getElementById("selectEntry");
+listener.addEventListener("keydown", function (e) {
+  if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+    getBulkMatch('single');
+    disableMatch();
+    clearMatch();
+  }
+});
+
 function disableMatch(){
-  document.getElementById("select").disabled = true;
+  if(document.getElementById("selectEntry").value !== ""){
+    document.getElementById("select").disabled = true;
+  }
 }
 
+/****************JQUERY*****************/
+
 $("#select").change(function () {
-   document.getElementById("selectEntry").placeholder="Enter "+ document.getElementById("select").value.toString();
+  document.getElementById("selectEntry").placeholder="Enter "+ document.getElementById("select").value.toString();
 });
 
 $("#industryCode").keyup(function() {
- $("#industryCode").val(this.value.match(/[0-9]*/));
+  $("#industryCode").val(this.value.match(/[0-9]*/));
 });
 
 $("#industryCode2").keyup(function() {
- $("#industryCode2").val(this.value.match(/[0-9]*/));
+  $("#industryCode2").val(this.value.match(/[0-9]*/));
 });
 
 $("#vatNumber").keyup(function() {
- $("#vatNumber").val(this.value.match(/[0-9]*/));
+  $("#vatNumber").val(this.value.match(/[0-9]*/));
 });
