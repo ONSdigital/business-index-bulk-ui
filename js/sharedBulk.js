@@ -118,7 +118,7 @@ function getBulkQuery(bulkType){
             ["LegalStatus:",legalStatus],
             ["Turnover:",turnover],
             ["TradingStatus:",tradingStatus],
-            ["PostCode:",postCode]];
+            ["PostCode:","("+postCode+")"]];
   generateList(values, bulkType);
 }
 
