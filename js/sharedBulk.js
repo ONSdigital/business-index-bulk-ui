@@ -139,6 +139,12 @@ function downloadCSV(){
 
 /*********HTML User Functionality**************/
 
+function disableMatch(){
+  if(document.getElementById("selectEntry").value !== ""){
+    document.getElementById("select").disabled = true;
+  }
+}
+
 function clearMatch(){
   var field= document.getElementById("selectEntry");
   field.value= field.defaultValue;
@@ -168,18 +174,11 @@ function changeMaxInput(){
 var listener = document.getElementById("selectEntry");
 listener.addEventListener("keydown", function (e) {
   if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
-    getBulkMatch('single');
+    getBulkMatch("single");
     disableMatch();
     clearMatch();
   }
 });
-
-function disableMatch(){
-  if(document.getElementById("selectEntry").value !== ""){
-    document.getElementById("select").disabled = true;
-  }
-}
-
 /****************JQUERY*****************/
 
 $("#select").change(function () {
