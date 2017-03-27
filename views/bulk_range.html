@@ -55,18 +55,18 @@
 
   <div class="container-fluid">
   <div class="col-sm-9 col-sm-offset-3 col-md-12 col-md-offset-0 main">
-      <form onkeypress="return event.keyCode !== 13">
+      <form>
         <div class="container" style:"overflow:hidden">
         <h1 class="page-header">Range Search</h1>
           <div class="form-group" style="width: 30em; float:left;">
 
             <div style="width: 15em; float: left;">
                 <label for="IndustryCode">Industry Code Min Range</label>
-                <input type="IndustryCode" class="form-control" id="industryCode" maxlength="5" placeholder="Enter Industry Code Number">
+                <input maxLength=5 type="IndustryCode" class="form-control" id="industryCode" placeholder="Enter Industry Code Number" pattern=".{5,5}">
             </div>
             <div style="width: 15em; float: left;">
                 <label for="IndustryCode">Industry Code Max Range</label>
-                <input type="IndustryCode" class="form-control" id="industryCode2" maxlength="5" placeholder="Enter Industry Code Number">
+                <input type="IndustryCode" class="form-control" id="industryCode2" maxlength="5" placeholder="Enter Industry Code Number" pattern=".{5,5}">
                 <br>
             </div>
             <button type="button" class="btn btn-primary" onclick="getRange('range');">Add to Bulk Match</button>

@@ -95,3 +95,75 @@ line-height: 200%;
     width: 12em;
     float: left;
 }
+
+#industryCode:valid {
+    color: green;
+}
+#industryCode:invalid {
+    color: red;
+    border-color: red;
+}
+
+#industryCode2:valid {
+    color: green;
+}
+#industryCode2:invalid {
+    color: red;
+    border-color: red;
+}
+
+#selectEntry:valid {
+    color: green;
+}
+#selectEntry:invalid {
+    color: red;
+    border-color: red;
+}
+
+#businessName:valid {
+    color: green;
+}
+#businessName:invalid {
+    color: red;
+    border-color: red;
+}
+
+#industryCode:valid {
+    color: green;
+}
+#industryCode:invalid {
+    color: red;
+    border-color: red;
+}
+
+#vatNumber:valid {
+    color: green;
+}
+#vatNumber:invalid {
+    color: red;
+    border-color: red;
+}
+
+#companyNumber:valid {
+    color: green;
+}
+#companyNumber:invalid {
+    color: red;
+    border-color: red;
+}
+
+#payeReference:valid {
+    color: green;
+}
+#payeReference:invalid {
+    color: red;
+    border-color: red;
+}
+
+#PostCode:valid {
+    color: green;
+}
+#PostCode:invalid {
+    color: red;
+    border-color: red;
+}

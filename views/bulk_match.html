@@ -67,11 +67,9 @@
               <option value="VatRefs">VAT Number</option>
             </select>
             <br>
-
-            <input class="form-control" id="selectEntry" maxlength="50" placeholder="Enter BusinessName">
+            <input class="form-control" id="selectEntry" maxlength="50" placeholder="Enter BusinessName" autocomplete="off" data-toggle="popover" title="Information" data-content="Business Name"></a>
             <br>
-
-            <button type="button" class="btn btn-primary" onclick="getBulkMatch('single');disableMatch();clearMatch();">Add to Bulk Match</button>
+            <button type="button" data-toggle="popover" class="btn btn-primary" onclick="getBulkMatch('single');disableMatch();clearMatch();">Add to Bulk Match</button>
             <button type="button" class="btn btn-primary" onclick="downloadCSV();">Download List of Queries</button>
             <button type="button" class="btn btn-secondary" onclick="clearMatch();">Clear</button>
 
@@ -90,5 +88,6 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/sharedBulk.js"></script>
+    <script src="../js/listener.js"></script>
   </body>
 </html>

@@ -14,6 +14,21 @@ function getInputs(bulkType){
   }
 }
 
+function queryValidation(){
+  var industryCodeValid = document.getElementById("industryCode").checkValidity();
+  var vatNumberValid = document.getElementById("vatNumber").checkValidity();
+  var companyNumberValid = document.getElementById("companyNumber").checkValidity();
+  var payeReferenceValid = document.getElementById("payeReference").checkValidity();
+  var postCodeValid = document.getElementById("PostCode").checkValidity();
+
+  if (industryCodeValid && vatNumberValid && companyNumberValid && payeReferenceValid && postCodeValid){
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
 function createBulkList(toAdd){
   for (var x = 1; x < multiBulkQuery.length; x++){
     var replaced = multiBulkQuery[x].replace(/}|{|,|"|"|\)|\(/g,"");
@@ -83,16 +98,29 @@ function getBulkMatch(bulkType){
   getInputs(bulkType);
   var selectCategory = document.getElementById("select").value.toString();
   var selectValue = document.getElementById("selectEntry").value.toString();
+  var valid = document.getElementById("selectEntry").checkValidity();
   var values = [[selectCategory+"=",selectValue]];
-  generateList(values, bulkType);
+  if (valid || selectCategory === "BusinessName"){
+    generateList(values, bulkType);
+  }
+  else {
+    //alert or red highlight
+  }
 }
 
 function getRange(bulkType){
   getInputs(bulkType);
   var industryCode1 = document.getElementById("industryCode").value.toString();
   var industryCode2 = document.getElementById("industryCode2").value.toString();
+  var valid = document.getElementById("industryCode").checkValidity();
+  var valid2 = document.getElementById("industryCode2").checkValidity();
   var values = [["IndustryCode:",industryCode1,industryCode2]];
-  generateList(values, bulkType);
+  if (valid && valid2){
+    generateList(values, bulkType);
+  }
+  else {
+    //alert or red highlight
+  }
 }
 
 function getBulkQuery(bulkType){
@@ -103,11 +131,12 @@ function getBulkQuery(bulkType){
   var vatNumber = document.getElementById("vatNumber").value.toString();
   var companyNumber = document.getElementById("companyNumber").value.toString();
   var payeReference = document.getElementById("payeReference").value.toString();
+  var postCode = document.getElementById("PostCode").value.toString();
+  var valid = queryValidation();
   var employmentBand = document.getElementById("employmentband").value.toString();
   var legalStatus = document.getElementById("legalStatus").value.toString();
   var turnover = document.getElementById("turnover").value.toString();
   var tradingStatus = document.getElementById("tradingstatus").value.toString();
-  var postCode = document.getElementById("PostCode").value.toString();
 
   values = [["BusinessName:","("+businessName+")"],
             ["IndustryCode:",industryCode],
@@ -119,7 +148,12 @@ function getBulkQuery(bulkType){
             ["Turnover:",turnover],
             ["TradingStatus:",tradingStatus],
             ["PostCode:","("+postCode+")"]];
-  generateList(values, bulkType);
+  if (valid){
+    generateList(values, bulkType);
+  }
+  else {
+    //alert or display error message
+  }
 }
 
 function downloadCSV(){
@@ -153,32 +187,29 @@ function clearMatch(){
 function changeMaxInput(){
   var selectChoice = document.getElementById("select").value;
   switch(selectChoice){
-    case "IndustryCode":
-      document.getElementById("selectEntry").maxLength = 5;
-      break;
     case "VatRefs":
       document.getElementById("selectEntry").maxLength = 12;
+      document.getElementById("selectEntry").pattern = "[0-9]{12,12}";
+      document.getElementById("selectEntry").setAttribute('data-content','VAT Reference');
       break;
     case "PayeRefs":
       document.getElementById("selectEntry").maxLength = 10;
+      document.getElementById("selectEntry").pattern = ".{10,10}";
+      document.getElementById("selectEntry").setAttribute('data-content','PAYE Reference');
       break;
     case "CompanyNo":
       document.getElementById("selectEntry").maxLength = 10;
+      document.getElementById("selectEntry").pattern = ".{10,10}";
+      document.getElementById("selectEntry").setAttribute('data-content','Company Name');
       break;
     default:
       document.getElementById("selectEntry").maxLength = 50;
+      document.getElementById("selectEntry").pattern = ".{1,50}";
+      document.getElementById("selectEntry").setAttribute('data-content','Business Name');
       break;
   }
 }
 
-var listener = document.getElementById("selectEntry");
-listener.addEventListener("keydown", function (e) {
-  if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
-    getBulkMatch("single");
-    disableMatch();
-    clearMatch();
-  }
-});
 /****************JQUERY*****************/
 
 $("#select").change(function () {
@@ -195,4 +226,12 @@ $("#industryCode2").keyup(function() {
 
 $("#vatNumber").keyup(function() {
   $("#vatNumber").val(this.value.match(/[0-9]*/));
+});
+
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+
+$(document).on('blur','[data-toggle="popover"]', function() {
+   $(this).popover('hide');
 });
