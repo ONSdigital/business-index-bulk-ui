@@ -190,22 +190,22 @@ function changeMaxInput(){
     case "VatRefs":
       document.getElementById("selectEntry").maxLength = 12;
       document.getElementById("selectEntry").pattern = "[0-9]{12,12}";
-      document.getElementById("selectEntry").setAttribute('data-content','VAT Reference');
+      document.getElementById("selectEntry").setAttribute("data-content",'VAT Reference');
       break;
     case "PayeRefs":
       document.getElementById("selectEntry").maxLength = 10;
       document.getElementById("selectEntry").pattern = ".{10,10}";
-      document.getElementById("selectEntry").setAttribute('data-content','PAYE Reference');
+      document.getElementById("selectEntry").setAttribute("data-content",'PAYE Reference');
       break;
     case "CompanyNo":
       document.getElementById("selectEntry").maxLength = 10;
       document.getElementById("selectEntry").pattern = ".{10,10}";
-      document.getElementById("selectEntry").setAttribute('data-content','Company Name');
+      document.getElementById("selectEntry").setAttribute("data-content",'Company Name');
       break;
     default:
       document.getElementById("selectEntry").maxLength = 50;
       document.getElementById("selectEntry").pattern = ".{1,50}";
-      document.getElementById("selectEntry").setAttribute('data-content','Business Name');
+      document.getElementById("selectEntry").setAttribute("data-content",'Business Name');
       break;
   }
 }
@@ -229,9 +229,18 @@ $("#vatNumber").keyup(function() {
 });
 
 $(document).ready(function(){
-    $('[data-toggle="popover"]').popover();
+  $("[data-toggle='popover']").popover();
 });
 
-$(document).on('blur','[data-toggle="popover"]', function() {
-   $(this).popover('hide');
+$(document).on("blur","[data-toggle='popover']", function() {
+   $(this).popover("hide");
+});
+
+var listener = document.getElementById("selectEntry");
+listener.addEventListener("keydown", function (e) {
+  if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
+    getBulkMatch("single");
+    disableMatch();
+    clearMatch();
+  }
 });
