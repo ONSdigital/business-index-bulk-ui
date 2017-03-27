@@ -190,22 +190,22 @@ function changeMaxInput(){
     case "VatRefs":
       document.getElementById("selectEntry").maxLength = 12;
       document.getElementById("selectEntry").pattern = "[0-9]{12,12}";
-      document.getElementById("selectEntry").setAttribute("data-content",'VAT Reference');
+      document.getElementById("selectEntry").setAttribute("data-content","VAT Reference");
       break;
     case "PayeRefs":
       document.getElementById("selectEntry").maxLength = 10;
       document.getElementById("selectEntry").pattern = ".{10,10}";
-      document.getElementById("selectEntry").setAttribute("data-content",'PAYE Reference');
+      document.getElementById("selectEntry").setAttribute("data-content","PAYE Reference");
       break;
     case "CompanyNo":
       document.getElementById("selectEntry").maxLength = 10;
       document.getElementById("selectEntry").pattern = ".{10,10}";
-      document.getElementById("selectEntry").setAttribute("data-content",'Company Name');
+      document.getElementById("selectEntry").setAttribute("data-content","Company Name");
       break;
     default:
       document.getElementById("selectEntry").maxLength = 50;
       document.getElementById("selectEntry").pattern = ".{1,50}";
-      document.getElementById("selectEntry").setAttribute("data-content",'Business Name');
+      document.getElementById("selectEntry").setAttribute("data-content","Business Name");
       break;
   }
 }
