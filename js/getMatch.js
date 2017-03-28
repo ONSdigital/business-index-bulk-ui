@@ -48,7 +48,7 @@ function generateList(values) {
   }
   arr.pop();
   var query = arr.join("");
-  if (query !== queryEnd && query !== ""){
+  if (query !== ""){
     addBulk(query);
   }
 }

@@ -36,25 +36,6 @@ function getRangeInputs(){
   return [industryCode,employmentBand,turnover];
 }
 
-function getQuery(values){
-  var bulkQuery = [];
-  bulkQuery.push("Request"+"\n");
-  boxQuery = getCheckBoxInputs();
-  if (boxQuery !== ""){
-    bulkQuery.push(boxQuery);
-    bulkQuery.push(" AND ");
-  }
-  for(var x in values){
-   if (values[x][1] !== "" && values[x][1] !== "()" && values[x][1] !== undefined){
-      bulkQuery.push(values[x][0]);
-      bulkQuery.push(values[x][1]);
-      bulkQuery.push(" AND ");
-    }
-  }
-  bulkQuery.pop();
-  downloadFile(bulkQuery);
-}
-
 function queryValidation(){
   var industryCodeValid = document.getElementById("industryCode").checkValidity();
   var industryCode2Valid = document.getElementById("industryCode2").checkValidity();
@@ -68,36 +49,6 @@ function queryValidation(){
   }
   else {
     return false;
-  }
-}
-
-function getBulkQuery(bulkType){
-  var values = [];
-  var businessName = document.getElementById("businessName").value.toString();
-  var vatNumber = document.getElementById("vatNumber").value.toString();
-  var companyNumber = document.getElementById("companyNumber").value.toString();
-  var payeReference = document.getElementById("payeReference").value.toString();
-  var postCode = document.getElementById("PostCode").value.toString();
-  var valid = queryValidation();
-  var rangeValues = getRangeInputs();
-  var industryCode = rangeValues[0];
-  var employmentBand = rangeValues[1];
-  var turnover = rangeValues[2];
-
-  values = [["BusinessName:","("+businessName+")"],
-            ["IndustryCode:",industryCode],
-            ["EmploymentBands:",employmentBand],
-            ["Turnover:",turnover],
-            ["VatRefs:",vatNumber],
-            ["CompanyNo:",companyNumber],
-            ["PayeRefs:",payeReference],
-            ["PostCode:","("+postCode+")"]];
-  if (valid){
-    //download queryCSV
-    getQuery(values);
-  }
-  else {
-    //alert or display error message
   }
 }
 
@@ -134,5 +85,54 @@ function downloadFile(bulkQuery){
   link.setAttribute("download", "query_list.csv");
   document.body.appendChild(link); // Required for FF
   link.click(); // This will download the data file named "my_data.csv".
+  }
+}
+
+function getQuery(values){
+  var bulkQuery = [];
+  bulkQuery.push("Request"+"\n");
+  var boxQuery = getCheckBoxInputs();
+  if (boxQuery !== ""){
+    bulkQuery.push(boxQuery);
+    bulkQuery.push(" AND ");
+  }
+  for(var x in values){
+   if (values[x][1] !== "" && values[x][1] !== "()" && typeof values[x][1] !== "undefined"){
+      bulkQuery.push(values[x][0]);
+      bulkQuery.push(values[x][1]);
+      bulkQuery.push(" AND ");
+    }
+  }
+  bulkQuery.pop();
+  downloadFile(bulkQuery);
+}
+
+function getBulkQuery(bulkType){
+  var values = [];
+  var businessName = document.getElementById("businessName").value.toString();
+  var vatNumber = document.getElementById("vatNumber").value.toString();
+  var companyNumber = document.getElementById("companyNumber").value.toString();
+  var payeReference = document.getElementById("payeReference").value.toString();
+  var postCode = document.getElementById("PostCode").value.toString();
+  var valid = queryValidation();
+  var rangeValues = getRangeInputs();
+  var industryCode = rangeValues[0];
+  var employmentBand = rangeValues[1];
+  var turnover = rangeValues[2];
+
+  values = [["BusinessName:","("+businessName+")"],
+            ["IndustryCode:",industryCode],
+            ["EmploymentBands:",employmentBand],
+            ["Turnover:",turnover],
+            ["VatRefs:",vatNumber],
+            ["CompanyNo:",companyNumber],
+            ["PayeRefs:",payeReference],
+            ["PostCode:","("+postCode+")"]];
+  if (valid){
+    //download queryCSV
+    getQuery(values);
+  }
+  else {
+    //alert or display error message
   }
 }
