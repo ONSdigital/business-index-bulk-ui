@@ -1,5 +1,17 @@
+var multiBulkQuery = [];
+var firstRun = 1;
+
+function getInputs(){
+  var selectCategory;
+  if (firstRun === 1){
+    selectCategory = document.getElementById("select").value.toString();
+    multiBulkQuery.push(selectCategory+"\n");
+    firstRun=0;
+  }
+}
+
 function createBulkList(toAdd){
-  for (var x = 1; x < typeof multiBulkQuery.length; x++){
+  for (var x = 1; x < multiBulkQuery.length; x++){
     var replaced = multiBulkQuery[x].replace(/}|{|,|"|"|\)|\(/g,"");
     toAdd += "<h3>" + x.toString() + "." + replaced + "</h3><button type='button' class='btn btn-primary' onclick='deleteBulk("+x.toString()+");'>Delete</button><br>";
   }
@@ -7,7 +19,7 @@ function createBulkList(toAdd){
   document.getElementById("bulkList").innerHTML = toAdd;
 }
 
-function addBulk(query, bulkType){
+function addBulk(query){
   var toAdd = [];
   toAdd += "<div class='form-group'  id='bulkList' style='width: 30em; float:right; margin-right:20%'><label>List of Queries</label>";
   multiBulkQuery.push(query+ "\n");
@@ -24,36 +36,49 @@ function deleteBulk(currentIndex){
   createBulkList(toAdd);
 }
 
-function generateList(values, bulkType) {
+function generateList(values) {
   var arr = [];
   var firstUse = true;
-  var queryEnd = "";
-  // Form the query:
+
   for(var x in values){
-   if (bulkType === "single" && values[x][1] !== ""){
+   if (values[x][1] !== ""){
       arr.push(values[x][1]);
       arr.push(" AND ");
     }
   }
   arr.pop();
-  arr.push(queryEnd);
   var query = arr.join("");
   if (query !== queryEnd && query !== ""){
-    addBulk(query, bulkType);
+    addBulk(query);
   }
 }
 
-function getBulkMatch(bulkType){
-  getInputs(bulkType);
+function getBulkMatch(){
+  getInputs();
   var selectCategory = document.getElementById("select").value.toString();
   var selectValue = document.getElementById("selectEntry").value.toString();
   var valid = document.getElementById("selectEntry").checkValidity();
   var values = [[selectCategory+"=",selectValue]];
   if (valid || selectCategory === "BusinessName"){
-    generateList(values, bulkType);
+    generateList(values);
   }
   else {
     //alert or red highlight
+  }
+}
+
+function downloadCSV(){
+  if (multiBulkQuery.length !== 0 && multiBulkQuery.length !== 1)
+  {
+    var joinQuery = multiBulkQuery.join("");
+    var modifiedString = joinQuery.replace(/[}",]/g, "");
+    var CSV = modifiedString;
+    var uri = "data:text/csv;charset=utf-8," + escape(CSV);
+    var link = document.createElement("a");
+    link.setAttribute("href", uri);
+    link.setAttribute("download", "query_list.csv");
+    document.body.appendChild(link); // Required for FF
+    link.click(); // This will download the data file named "my_data.csv".
   }
 }
 
