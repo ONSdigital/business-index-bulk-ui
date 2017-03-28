@@ -52,9 +52,9 @@ $("#employmentBand").change(function(e){
     $("#employmentBand2 option[value="+alphabet[i]+"]").prop("disabled",false);
   }
   var choice = $(this).val();
-  for (var i in alphabet){
-    $("#employmentBand2 option[value="+alphabet[i]+"]").prop("disabled",true);
-    if (choice === alphabet[i].toString()){
+  for (var j in alphabet){
+    $("#employmentBand2 option[value="+alphabet[j]+"]").prop("disabled",true);
+    if (choice === alphabet[j].toString()){
       break;
     }
   }
@@ -62,13 +62,13 @@ $("#employmentBand").change(function(e){
 
 $("#turnover").change(function(e){
   $("#turnover2").val("");
-  for (var j in alphabet){
-    $("#turnover2 option[value="+alphabet[j]+"]").prop("disabled",false);
+  for (var k in alphabet){
+    $("#turnover2 option[value="+alphabet[k]+"]").prop("disabled",false);
   }
   var choice = $(this).val();
-  for (var j in alphabet){
-    $("#turnover2 option[value="+alphabet[j]+"]").prop("disabled",true);
-    if (choice === alphabet[j].toString()){
+  for (var l in alphabet){
+    $("#turnover2 option[value="+alphabet[l]+"]").prop("disabled",true);
+    if (choice === alphabet[l].toString()){
       break;
     }
   }
