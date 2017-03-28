@@ -47,6 +47,7 @@ var alphabet = [["A"],
                 ["O"]];
 
 $("#employmentBand").change(function(e){
+  $("#employmentBand2").val("");
   for (var i in alphabet){
     $("#employmentBand2 option[value="+alphabet[i]+"]").prop("disabled",false);
   }
@@ -60,6 +61,7 @@ $("#employmentBand").change(function(e){
 });
 
 $("#turnover").change(function(e){
+  $("#turnover2").val("");
   for (var j in alphabet){
     $("#turnover2 option[value="+alphabet[j]+"]").prop("disabled",false);
   }
