@@ -73,16 +73,17 @@ function getBulkQuery(bulkType){
 }
 
 function getCheckBoxInputs(boxParam){
-  var checkboxes = document.getElementsByName(boxParam+'[]');
+  var checkboxes = document.getElementsByName(boxParam+"[]");
   var checkboxesChecked = [];
 
-  for (var i in checkboxes)
-  if (checkboxes[i].checked){
-      checkboxesChecked.push(boxParam+":");
-      checkboxesChecked.push(checkboxes[i].value);
-      checkboxesChecked.push(" OR ");
-    }
-    checkboxesChecked.pop();
-    var checkQuery = checkboxesChecked.join("");
-    return checkQuery;
+  for (var i in checkboxes){
+    if (checkboxes[i].checked){
+        checkboxesChecked.push(boxParam+":");
+        checkboxesChecked.push(checkboxes[i].value);
+        checkboxesChecked.push(" OR ");
+      }
+      checkboxesChecked.pop();
+      var checkQuery = checkboxesChecked.join("");
+      return checkQuery;
+  }
 }

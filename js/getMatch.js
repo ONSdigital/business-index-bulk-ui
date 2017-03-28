@@ -1,5 +1,5 @@
 function createBulkList(toAdd){
-  for (var x = 1; x < multiBulkQuery.length; x++){
+  for (var x = 1; x < typeof multiBulkQuery.length; x++){
     var replaced = multiBulkQuery[x].replace(/}|{|,|"|"|\)|\(/g,"");
     toAdd += "<h3>" + x.toString() + "." + replaced + "</h3><button type='button' class='btn btn-primary' onclick='deleteBulk("+x.toString()+");'>Delete</button><br>";
   }
