@@ -58,6 +58,7 @@ function getCheckBoxInputs(){
                        ["TradingStatus"]];
   for (var x in checkedValues){
       var checkboxes = document.getElementsByName(checkedValues[x]+"[]");
+      checkboxesChecked.push("(");
       for (var i =0; i < checkboxes.length; i++){
       if (checkboxes[i].checked){
         checkboxesChecked.push(checkedValues[x]+":");
@@ -66,6 +67,7 @@ function getCheckBoxInputs(){
       }
     }
     checkboxesChecked.pop();
+    checkboxesChecked.push(")");
     checkboxesChecked.push(" AND ");
   }
   checkboxesChecked.pop();

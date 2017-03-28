@@ -23,3 +23,51 @@ $(document).ready(function(){
 $(document).on("blur","[data-toggle='popover']", function() {
    $(this).popover("hide");
 });
+
+  if(document.getElementById("industryCode").value !== ""){
+    document.getElementById("industryCode2").disabled = true;
+  }
+
+
+var alphabet = [["A"],
+                ["B"],
+                ["C"],
+                ["C"],
+                ["D"],
+                ["E"],
+                ["F"],
+                ["G"],
+                ["H"],
+                ['I'],
+                ["J"],
+                ["K"],
+                ["L"],
+                ["M"],
+                ["N"],
+                ["O"]];
+
+$('#employmentBand').change(function(e){
+  for (x in alphabet){
+    $("#employmentBand2 option[value="+alphabet[x]+"]").prop('disabled',false);
+  }
+  var choice = $(this).val();
+  for (x in alphabet){
+    $("#employmentBand2 option[value="+alphabet[x]+"]").prop('disabled',true);
+    if (choice === alphabet[x].toString()){
+      break;
+    }
+  }
+});
+
+$('#turnover').change(function(e){
+  for (x in alphabet){
+    $("#turnover2 option[value="+alphabet[x]+"]").prop('disabled',false);
+  }
+  var choice = $(this).val();
+  for (x in alphabet){
+    $("#turnover2 option[value="+alphabet[x]+"]").prop('disabled',true);
+    if (choice === alphabet[x].toString()){
+      break;
+    }
+  }
+});
