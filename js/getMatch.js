@@ -21,14 +21,14 @@ function createBulkList(toAdd){
 
 function addBulk(query){
   var toAdd = [];
-  toAdd += "<div class='form-group'  id='bulkList' style='width: 30em; float:right; margin-right:20%'><label>List of Queries</label>";
+  toAdd += "<label>List of Queries</label>";
   multiBulkQuery.push(query+ "\n");
   createBulkList(toAdd);
 }
 
 function deleteBulk(currentIndex){
   var toAdd = [];
-  toAdd += "<div class='form-group'  id='bulkList' style='width: 30em; float:right; margin-right:20%'><label>List of Queries</label>";
+  toAdd += "<label>List of Queries</label>";
   multiBulkQuery.splice(currentIndex,1);
   if (multiBulkQuery.length === 1){
     toAdd = "";

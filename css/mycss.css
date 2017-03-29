@@ -170,5 +170,8 @@ line-height: 200%;
 
 #bulkList {
     height: 400px;
-    overflow: scroll;
+    width: 30em;
+    float: right;
+    margin-right: 20%;
+    overflow: auto;
 }
