@@ -58,33 +58,32 @@
         <div class="form-group" style="width: 30em; float:left;">
 
           <label>Business Name</label>
-          <input class="form-control" id="businessName" maxlength="50" placeholder="Enter Business Name" pattern=".{1,50}"><br>
+          <input class="form-control" id="businessName" maxlength="50" placeholder="Enter Business Name" pattern=".{1,50}" title="Enter a business name between 1-50 characters"><br>
 
           <label>Company Registration Number</label>
-          <input class="form-control" id="companyNumber" maxlength="10" placeholder="Enter Company Registration Number" pattern=".{10,10}"><br>
+          <input class="form-control" id="companyNumber" maxlength="10" placeholder="Enter Company Registration Number" pattern=".{10,10}" title="Please enter a 10 digit Company Registration Number"><br>
 
           <label>VAT Number</label>
-          <input class="form-control" id="vatNumber" maxlength="12" placeholder="Enter VAT Number" pattern=".{12,12}"><br>
+          <input class="form-control" id="vatNumber" maxlength="12" placeholder="Enter VAT Number" pattern=".{12,12}" title="Please enter a 12 digit VAT Number"><br>
 
           <label>PAYE Reference</label>
-          <input class="form-control" id="payeReference" maxlength="10" placeholder="Enter PAYE Reference" pattern=".{10,10}"><br>
+          <input class="form-control" id="payeReference" maxlength="10" placeholder="Enter PAYE Reference" pattern=".{10,10}" title="Please enter a 10 digit PAYE Reference"><br>
 
           <label for="PostCode">Postcode</label>
-          <input type="PostCode" class="form-control" id="PostCode" maxlength="8" placeholder="Enter Postcode" pattern="[a-zA-Z]{2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}"><br>
+          <input type="PostCode" class="form-control" id="PostCode" maxlength="8" placeholder="Enter Postcode" pattern="(*)|[a-zA-Z*]{2}([0-9*]{1,2}|[0-9*][a-zA-Z*])\s*[0-9*][a-zA-Z*]{2}" title="Please enter a valid Post Code"><br>
 
           <div style="width: 15em; float: left;">
               <label for="IndustryCode">Industry Code Min Range</label>
-              <input maxLength=5 type="IndustryCode" class="form-control" id="industryCode" placeholder="Enter Industry Code Number" pattern=".{5,5}">
+              <input maxLength=5 type="IndustryCode" class="form-control" id="industryCode" placeholder="Enter Industry Code Number" pattern=".{5,5}" title="Please enter a 5 digit Industry Code">
           </div>
           <div style="width: 15em; float: left;">
               <label for="IndustryCode">Industry Code Max Range</label>
-              <input type="IndustryCode" class="form-control" id="industryCode2" maxlength="5" placeholder="Enter Industry Code Number" pattern=".{5,5}">
+              <input type="IndustryCode" class="form-control" id="industryCode2" maxlength="5" placeholder="Enter Industry Code Number" pattern=".{5,5}" title="Please enter a 5 digit Industry Code">
               <br>
           </div>
 
           <div style="width: 15em; float: left;">
               <label for="employmentbandlabel">Employment Band Min Range</label>
-              <!--input-->
               <select class="form-control" id="employmentBand">
                 <option></option>
                 <option value="A">A [0]</option>
@@ -106,7 +105,6 @@
           </div>
           <div style="width: 15em; float: left;">
               <label for="employmentbandlabel">Employment Band Max Range</label>
-              <!--input-->
               <select class="form-control" id="employmentBand2">
                 <option></option>
                 <option value="A" disabled>A [0]</option>
@@ -130,7 +128,6 @@
 
           <div style="width: 15em; float: left;">
               <label for="turnoverlabel">Turnover Min Range</label>
-              <!--input-->
               <select class="form-control" id="turnover">
                 <option></option>
                 <option value="A">A [0-99]</option>
@@ -146,7 +143,6 @@
           </div>
           <div style="width: 15em; float: left;">
               <label for="turnoverlabel">Turnover Max Range</label>
-              <!--input-->
               <select class="form-control" id="turnover2">
                 <option></option>
                 <option value="A" disabled>A [0-99]</option>
@@ -177,13 +173,13 @@
           <li><input type="checkbox" name="TradingStatus[]" value="C"/> Closed</li>
           <li><input type="checkbox" name="TradingStatus[]" value="D"/> Dormant</li>
           <li><input type="checkbox" name="TradingStatus[]" value="I"/> Insolvent</li>
-          <br><br>
-          </div>
+          <br>
           <button type="button" class="btn btn-primary" onclick="getBulkQuery();">Download Query</button>
           <button type="reset" id="csv"class="btn btn-secondary">Clear</button>
+          </div>
+
         </form>
       </div>
-      <div id="bulkList"></div>
     </div>
 
     <!-- Bootstrap core JavaScript

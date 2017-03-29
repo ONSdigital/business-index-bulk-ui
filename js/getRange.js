@@ -5,35 +5,27 @@ function getRangeInputs(){
   var employmentBand2 = document.getElementById("employmentBand2").value.toString();
   var turnover1 = document.getElementById("turnover").value.toString();
   var turnover2 = document.getElementById("turnover2").value.toString();
-  var industryCode;
-  var employmentBand;
-  var turnover;
+
+  var rangeOutput = [[industryCode],
+                     [employmentBand],
+                     [turnover]];
 
   var rangeValues = [["[",industryCode1, " TO ", industryCode2,"]"],
                      ["[",employmentBand1, " TO ", employmentBand2,"]"],
                      ["[",turnover1, " TO ", turnover2,"]"]];
 
-  if(rangeValues[0][1] !== "" && rangeValues[0][3] === ""){
-    industryCode = rangeValues[0][1];
+  for (var y in rangeValues){
+     if(rangeValues[y][1] !== "" && rangeValues[y][3] === ""){
+       rangeOutput[y] = rangeValues[y][1];
+     }
+     else if(rangeValues[y][1] !== "" && rangeValues[y][3] !== ""){
+       rangeOutput[y] = rangeValues[y].join("");
+     }
+     else {
+       rangeOutput[y] = "";
+     }
   }
-  else if(rangeValues[0][1] !== "" && rangeValues[0][3] !== ""){
-    industryCode = rangeValues[0].join("");
-  }
-
-  if(rangeValues[1][1] !== "" && rangeValues[1][3] === ""){
-    employmentBand = rangeValues[1][1];
-  }
-  else if(rangeValues[1][1] !== "" && rangeValues[1][3] !== ""){
-    employmentBand = rangeValues[1].join("");
-  }
-
-  if(rangeValues[2][1] !== "" && rangeValues[2][3] === ""){
-    turnover = rangeValues[2][1];
-  }
-  else if(rangeValues[2][1] !== "" && rangeValues[2][3] !== ""){
-    turnover = rangeValues[2].join("");
-  }
-  return [industryCode,employmentBand,turnover];
+  return rangeOutput;
 }
 
 function queryValidation(){
@@ -57,9 +49,11 @@ function getCheckBoxInputs(){
   var checkedValues = [["LegalStatus"],
                        ["TradingStatus"]];
   for (var x in checkedValues){
+    if (checkedValues !== ""){
       var empty = true;
       var checkboxes = document.getElementsByName(checkedValues[x]+"[]");
       checkboxesChecked.push("(");
+    }
       for (var i =0; i < checkboxes.length; i++){
       if (checkboxes[i].checked){
         checkboxesChecked.push(checkedValues[x]+":");
@@ -98,7 +92,7 @@ function getQuery(values){
   var bulkQuery = [];
   bulkQuery.push("Request"+"\n");
   var boxQuery = getCheckBoxInputs();
-  if (boxQuery !== "" && boxQuery !== "( AND ("){
+  if (boxQuery !== "" && boxQuery !== "( AND (" && "( AND" && "AND ("){
     bulkQuery.push(boxQuery);
     bulkQuery.push(" AND ");
   }
