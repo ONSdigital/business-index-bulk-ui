@@ -21,14 +21,14 @@ function createBulkList(toAdd){
 
 function addBulk(query){
   var toAdd = [];
-  toAdd += "<div class='form-group'  id='bulkList' style='width: 30em; float:right; margin-right:20%'><label>List of Queries</label>";
+  toAdd += "<label>List of Queries</label>";
   multiBulkQuery.push(query+ "\n");
   createBulkList(toAdd);
 }
 
 function deleteBulk(currentIndex){
   var toAdd = [];
-  toAdd += "<div class='form-group'  id='bulkList' style='width: 30em; float:right; margin-right:20%'><label>List of Queries</label>";
+  toAdd += "<label>List of Queries</label>";
   multiBulkQuery.splice(currentIndex,1);
   if (multiBulkQuery.length === 1){
     toAdd = "";
@@ -101,22 +101,22 @@ function changeMaxInput(){
     case "VatRefs":
       document.getElementById("selectEntry").maxLength = 12;
       document.getElementById("selectEntry").pattern = "[0-9]{12,12}";
-      document.getElementById("selectEntry").setAttribute("data-content","VAT Reference");
+      document.getElementById("selectEntry").setAttribute("data-content","Please enter a 12 digit VAT Number");
       break;
     case "PayeRefs":
       document.getElementById("selectEntry").maxLength = 10;
       document.getElementById("selectEntry").pattern = ".{10,10}";
-      document.getElementById("selectEntry").setAttribute("data-content","PAYE Reference");
+      document.getElementById("selectEntry").setAttribute("data-content","Please enter a 10 digit PAYE Reference");
       break;
     case "CompanyNo":
-      document.getElementById("selectEntry").maxLength = 10;
-      document.getElementById("selectEntry").pattern = ".{10,10}";
-      document.getElementById("selectEntry").setAttribute("data-content","Company Name");
+      document.getElementById("selectEntry").maxLength = 8;
+      document.getElementById("selectEntry").pattern = "[a-zA-Z]{2}[0-9]{6}|[0-9]{8}";
+      document.getElementById("selectEntry").setAttribute("data-content","Please enter a 8 digit Company Reference Number");
       break;
     default:
       document.getElementById("selectEntry").maxLength = 50;
       document.getElementById("selectEntry").pattern = ".{1,50}";
-      document.getElementById("selectEntry").setAttribute("data-content","Business Name");
+      document.getElementById("selectEntry").setAttribute("data-content","Please enter a 1-50 character Business Name");
       break;
   }
 }
