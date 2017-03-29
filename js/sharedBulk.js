@@ -24,21 +24,11 @@ $(document).on("blur","[data-toggle='popover']", function() {
    $(this).popover("hide");
 });
 
-var alphabet = [["A"],
-                ["B"],
-                ["C"],
-                ["C"],
-                ["D"],
-                ["E"],
-                ["F"],
-                ["G"],
-                ["H"],
-                ["I"],
-                ["J"],
-                ["K"],
-                ["L"],
-                ["M"],
-                ["N"],
+var alphabet = [["A"],["B"],["C"],
+                ["C"],["D"],["E"],
+                ["F"],["G"],["H"],
+                ["I"],["J"],["K"],
+                ["L"],["M"],["N"],
                 ["O"]];
 
 $("#employmentBand").change(function(e){
