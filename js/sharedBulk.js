@@ -35,7 +35,7 @@ $("#employmentBand").change(function(e){
   $("#employmentBand2").val("");
   var choice = $(this).val();
   for (var i in alphabet){
-    if (choice !== ""){
+    if (alphabet.hasOwnProperty(i)) {
       $("#employmentBand2 option[value="+alphabet[i]+"]").prop("disabled",false);
     }
   }
@@ -53,7 +53,7 @@ $("#turnover").change(function(e){
   $("#turnover2").val("");
   var choice = $(this).val();
   for (var k in alphabet){
-    if (choice !== ""){
+    if (alphabet.hasOwnProperty(k)) { 
       $("#turnover2 option[value="+alphabet[k]+"]").prop("disabled",false);
     }
   }
