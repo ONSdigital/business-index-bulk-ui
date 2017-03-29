@@ -24,7 +24,7 @@
       <div class="header-wrapper">
         <div class="header-global">
           <div class="header-logo">
-            <a href="#" title="Go to the homepage" id="logo" class="content">
+            <a href="#" title="Gothe homepage" id="logo" class="content">
             <img src="../img/orglogo.svg" width="240" height="135" alt="Office for National Statistics"> </a>
           </div>
           <div class="banner-text">
@@ -45,7 +45,6 @@
             <li><a href="../index.html">Home</a></li>
             <li><a href="bulk_match.html">Bulk Match</a></li>
             <li class="active"><a href="bulk_query.html">Bulk Query</a></li>
-            <li><a href="bulk_range.html">Range Search</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div><!--/.container-fluid -->
@@ -55,87 +54,133 @@
     <div class="col-sm-9 col-sm-offset-3 col-md-12 col-md-offset-0 main">
     <form onsubmit="getBulkQuery('multi');">
       <div class="container" style:"overflow:hidden">
-          <h1 class="page-header">Bulk Query</h1>
-          <div class="form-group" style="width: 30em; float:left;">
+        <h1 class="page-header">Bulk Query</h1>
+        <div class="form-group" style="width: 30em; float:left;">
 
           <label>Business Name</label>
-          <input class="form-control" id="businessName" maxlength="50" placeholder="Enter Business Name"><br>
+          <input class="form-control" id="businessName" maxlength="50" placeholder="Enter Business Name" pattern=".{1,50}"><br>
 
           <label>Company Registration Number</label>
-          <input class="form-control" id="companyNumber" maxlength="10" placeholder="Enter Company Registration Number"><br>
-
-          <label>Industry Code</label>
-          <input class="form-control" id="industryCode" maxlength="5" placeholder="Enter Industry Code Number"><br>
+          <input class="form-control" id="companyNumber" maxlength="10" placeholder="Enter Company Registration Number" pattern=".{10,10}"><br>
 
           <label>VAT Number</label>
-          <input class="form-control" id="vatNumber" maxlength="12" placeholder="Enter VAT Number"><br>
+          <input class="form-control" id="vatNumber" maxlength="12" placeholder="Enter VAT Number" pattern=".{12,12}"><br>
 
           <label>PAYE Reference</label>
-          <input class="form-control" id="payeReference" maxlength="10" placeholder="Enter PAYE Reference"><br>
+          <input class="form-control" id="payeReference" maxlength="10" placeholder="Enter PAYE Reference" pattern=".{10,10}"><br>
 
           <label for="PostCode">Postcode</label>
-          <input type="PostCode" class="form-control" id="PostCode" maxlength="8" placeholder="Enter Postcode"><br>
+          <input type="PostCode" class="form-control" id="PostCode" maxlength="8" placeholder="Enter Postcode" pattern="[a-zA-Z]{2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}"><br>
 
-          <label for="employmentbandlabel">Employment Band</label>
-          <select class="form-control" id="employmentband">
-            <option></option>
-            <option value="A">A [0]</option>
-            <option value="B">B [1]</option>
-            <option value="C">C [2-4]</option>
-            <option value="D">D [5-9]</option>
-            <option value="E">E [10-19]</option>
-            <option value="F">F [20-24]</option>
-            <option value="G">G [25-49]</option>
-            <option value="H">H [50-74]</option>
-            <option value="I">I [75-99]</option>
-            <option value="J">J [100-149]</option>
-            <option value="K">K [150-199]</option>
-            <option value="L">L [200-249]</option>
-            <option value="M">M [250-299]</option>
-            <option value="N">N [300-499]</option>
-            <option value="O">O [500+]</option>
-          </select><br>
+          <div style="width: 15em; float: left;">
+              <label for="IndustryCode">Industry Code Min Range</label>
+              <input maxLength=5 type="IndustryCode" class="form-control" id="industryCode" placeholder="Enter Industry Code Number" pattern=".{5,5}">
+          </div>
+          <div style="width: 15em; float: left;">
+              <label for="IndustryCode">Industry Code Max Range</label>
+              <input type="IndustryCode" class="form-control" id="industryCode2" maxlength="5" placeholder="Enter Industry Code Number" pattern=".{5,5}">
+              <br>
+          </div>
+
+          <div style="width: 15em; float: left;">
+              <label for="employmentbandlabel">Employment Band Min Range</label>
+              <!--input-->
+              <select class="form-control" id="employmentBand">
+                <option></option>
+                <option value="A">A [0]</option>
+                <option value="B">B [1]</option>
+                <option value="C">C [2-4]</option>
+                <option value="D">D [5-9]</option>
+                <option value="E">E [10-19]</option>
+                <option value="F">F [20-24]</option>
+                <option value="G">G [25-49]</option>
+                <option value="H">H [50-74]</option>
+                <option value="I">I [75-99]</option>
+                <option value="J">J [100-149]</option>
+                <option value="K">K [150-199]</option>
+                <option value="L">L [200-249]</option>
+                <option value="M">M [250-299]</option>
+                <option value="N">N [300-499]</option>
+                <option value="O">O [500+]</option>
+              </select>
+          </div>
+          <div style="width: 15em; float: left;">
+              <label for="employmentbandlabel">Employment Band Max Range</label>
+              <!--input-->
+              <select class="form-control" id="employmentBand2">
+                <option></option>
+                <option value="A" disabled>A [0]</option>
+                <option value="B" disabled>B [1]</option>
+                <option value="C" disabled>C [2-4]</option>
+                <option value="D" disabled>D [5-9]</option>
+                <option value="E" disabled>E [10-19]</option>
+                <option value="F" disabled>F [20-24]</option>
+                <option value="G" disabled>G [25-49]</option>
+                <option value="H" disabled>H [50-74]</option>
+                <option value="I" disabled>I [75-99]</option>
+                <option value="J" disabled>J [100-149]</option>
+                <option value="K" disabled>K [150-199]</option>
+                <option value="L" disabled>L [200-249]</option>
+                <option value="M" disabled>M [250-299]</option>
+                <option value="N" disabled>N [300-499]</option>
+                <option value="O" disabled>O [500+]</option>
+              </select>
+              <br>
+          </div>
+
+          <div style="width: 15em; float: left;">
+              <label for="turnoverlabel">Turnover Min Range</label>
+              <!--input-->
+              <select class="form-control" id="turnover">
+                <option></option>
+                <option value="A">A [0-99]</option>
+                <option value="B">B [100-249]</option>
+                <option value="C">C [250-499]</option>
+                <option value="D">D [500-999]</option>
+                <option value="E">E [1,000-1,999]</option>
+                <option value="F">F [2,000-4,999]</option>
+                <option value="G">G [5,000-9,999]</option>
+                <option value="H">H [10,000-49,999]</option>
+                <option value="I">I [50,000+]</option>
+              </select>
+          </div>
+          <div style="width: 15em; float: left;">
+              <label for="turnoverlabel">Turnover Max Range</label>
+              <!--input-->
+              <select class="form-control" id="turnover2">
+                <option></option>
+                <option value="A" disabled>A [0-99]</option>
+                <option value="B" disabled>B [100-249]</option>
+                <option value="C" disabled>C [250-499]</option>
+                <option value="D" disabled>D [500-999]</option>
+                <option value="E" disabled>E [1,000-1,999]</option>
+                <option value="F" disabled>F [2,000-4,999]</option>
+                <option value="G" disabled>G [5,000-9,999]</option>
+                <option value="H" disabled>H [10,000-49,999]</option>
+                <option value="I" disabled>I [50,000+]</option>
+              </select>
+              <br>
+          </div>
 
           <label for="legalStatuslabel">Legal Status</label>
-          <select class="form-control" id="legalStatus">
-            <option></option>
-            <option value="1">Company</option>
-            <option value="2">Sole Proprietor</option>
-            <option value="3">Partnership</option>
-            <option value="4">Public Corporation</option>
-            <option value="5">Non-profit Organisation</option>
-            <option value="6">Local Authority</option>
-            <option value="7">Central Government</option>
-            <option value="8">Charity</option>
-          </select><br>
-
-          <label for="turnoverlabel">Turnover £000's'</label>
-          <select class="form-control" id="turnover">
-            <option></option>
-            <option value="A">A [0-99]</option>
-            <option value="B">B [100-249]</option>
-            <option value="C">C [250-499]</option>
-            <option value="D">D [500-999]</option>
-            <option value="E">E [1,000-1,999]</option>
-            <option value="F">F [2,000-4,999]</option>
-            <option value="G">G [5,000-9,999]</option>
-            <option value="H">H [10,000-49,999]</option>
-            <option value="I">I [50,000+]</option>
-          </select><br>
-
+          <li><input type="checkbox" name="LegalStatus[]" value="1"/> Company </li>
+          <li><input type="checkbox" name="LegalStatus[]" value="2"/> Sole Proprietor </li>
+          <li><input type="checkbox" name="LegalStatus[]" value="3"/> Partnership</li>
+          <li><input type="checkbox" name="LegalStatus[]" value="4"/> Public Corporation</li>
+          <li><input type="checkbox" name="LegalStatus[]" value="5"/> Non-Profit Organisation</li>
+          <li><input type="checkbox" name="LegalStatus[]" value="6"/> Local Authority</li>
+          <li><input type="checkbox" name="LegalStatus[]" value="7"/> Central Government</li>
+          <li><input type="checkbox" name="LegalStatus[]" value="8"/> Charity </li>
+          <br>
           <label for="tradingstatuslabel">Trading Status</label>
-          <select class="form-control" id="tradingstatus">
-            <option></option>
-            <option value="A">Active</option>
-            <option value="C">Closed</option>
-            <option value="D">Dormant</option>
-            <option value="I">Insolvent</option>
-          </select><br>
-
-          <button type="button" class="btn btn-primary" onclick="getBulkQuery('multi');">Add to Bulk Match</button>
-          <button type="button" class="btn btn-primary" onclick="downloadCSV();">Download List of Queries</button>
+          <li><input type="checkbox" name="TradingStatus[]" value="A"/> Active</li>
+          <li><input type="checkbox" name="TradingStatus[]" value="C"/> Closed</li>
+          <li><input type="checkbox" name="TradingStatus[]" value="D"/> Dormant</li>
+          <li><input type="checkbox" name="TradingStatus[]" value="I"/> Insolvent</li>
+          <br><br>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="getBulkQuery();">Download Query</button>
           <button type="reset" id="csv"class="btn btn-secondary">Clear</button>
-
         </form>
       </div>
       <div id="bulkList"></div>
@@ -148,5 +193,6 @@
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/sharedBulk.js"></script>
+    <script src="../js/getRange.js"></script>
   </body>
 </html>
