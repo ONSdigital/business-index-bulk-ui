@@ -6,6 +6,10 @@ function getRangeInputs(){
   var turnover1 = document.getElementById("turnover").value.toString();
   var turnover2 = document.getElementById("turnover2").value.toString();
 
+  var industryCode;
+  var employmentBand;
+  var turnover;
+
   var rangeOutput = [[industryCode],
                      [employmentBand],
                      [turnover]];
