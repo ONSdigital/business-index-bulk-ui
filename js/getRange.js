@@ -57,6 +57,7 @@ function getCheckBoxInputs(){
   var checkedValues = [["LegalStatus"],
                        ["TradingStatus"]];
   for (var x in checkedValues){
+      var empty = true;
       var checkboxes = document.getElementsByName(checkedValues[x]+"[]");
       checkboxesChecked.push("(");
       for (var i =0; i < checkboxes.length; i++){
@@ -64,10 +65,13 @@ function getCheckBoxInputs(){
         checkboxesChecked.push(checkedValues[x]+":");
         checkboxesChecked.push(checkboxes[i].value);
         checkboxesChecked.push(" OR ");
+        empty = false;
       }
     }
-    checkboxesChecked.pop();
-    checkboxesChecked.push(")");
+    if (!empty){
+      checkboxesChecked.pop();
+      checkboxesChecked.push(")");
+    }
     checkboxesChecked.push(" AND ");
   }
   checkboxesChecked.pop();
@@ -94,7 +98,7 @@ function getQuery(values){
   var bulkQuery = [];
   bulkQuery.push("Request"+"\n");
   var boxQuery = getCheckBoxInputs();
-  if (boxQuery !== ""){
+  if (boxQuery !== "" && boxQuery !== "( AND ("){
     bulkQuery.push(boxQuery);
     bulkQuery.push(" AND ");
   }

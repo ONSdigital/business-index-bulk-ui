@@ -167,3 +167,8 @@ line-height: 200%;
     color: red;
     border-color: red;
 }
+
+#bulkList {
+    height: 400px;
+    overflow: scroll;
+}

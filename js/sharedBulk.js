@@ -24,11 +24,6 @@ $(document).on("blur","[data-toggle='popover']", function() {
    $(this).popover("hide");
 });
 
-  if(document.getElementById("industryCode").value !== ""){
-    document.getElementById("industryCode2").disabled = true;
-  }
-
-
 var alphabet = [["A"],
                 ["B"],
                 ["C"],
