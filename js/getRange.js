@@ -18,17 +18,18 @@ function getRangeInputs(){
                      ["[",employmentBand1, " TO ", employmentBand2,"]"],
                      ["[",turnover1, " TO ", turnover2,"]"]];
 
-  for (var y in rangeValues){
-     if(rangeValues[y][1] !== "" && rangeValues[y][3] === ""){
-       rangeOutput[y] = rangeValues[y][1];
+  rangeValues.forEach(function(y){
+     if(y[1] !== "" && y[3] === ""){
+       rangeOutput[rangeValues.indexOf(y)] = y[1].toString()
      }
-     else if(rangeValues[y][1] !== "" && rangeValues[y][3] !== ""){
-       rangeOutput[y] = rangeValues[y].join("");
+     else if(y[1] !== "" && y[3] !== ""){
+       var joinedQuery = y.join("")
+       rangeOutput[rangeValues.indexOf(y)] = joinedQuery;
      }
      else {
-       rangeOutput[y] = "";
+       rangeOutput[rangeValues.indexOf(y)] = "";
      }
-  }
+  })
   return rangeOutput;
 }
 
@@ -52,18 +53,18 @@ function getCheckBoxInputs(){
   var checkboxesChecked = [];
   var checkedValues = [["LegalStatus"],
                        ["TradingStatus"]];
-  for (var x in checkedValues){
-      var checkboxes = document.getElementsByName(checkedValues[x]+"[]");
+  checkedValues.forEach(function(x){
+      var checkboxes = document.getElementsByName(x+"[]");
       var emptyCheckBox = true;
       checkboxesChecked.push("(");
-      for (var i =0; i < checkboxes.length; i++){
-      if (checkboxes[i].checked){
-        checkboxesChecked.push(checkedValues[x]+":");
-        checkboxesChecked.push(checkboxes[i].value);
+      checkboxes.forEach(function(i){
+      if (i.checked){
+        checkboxesChecked.push(x+":");
+        checkboxesChecked.push(i.value);
         checkboxesChecked.push(" OR ");
         emptyCheckBox = false;
       }
-    }
+    })
     if (!emptyCheckBox){
       checkboxesChecked.pop();
       checkboxesChecked.push(")");
@@ -72,7 +73,7 @@ function getCheckBoxInputs(){
     else{
       checkboxesChecked.pop();
     }
-  }
+  })
   checkboxesChecked.pop();
   var checkQuery = checkboxesChecked.join("");
   return checkQuery;
@@ -101,13 +102,13 @@ function getQuery(values){
     bulkQuery.push(boxQuery);
     bulkQuery.push(" AND ");
   }
-  for(var x in values){
-   if (values[x][1] !== "" && values[x][1] !== "()" && typeof values[x][1] !== "undefined"){
-      bulkQuery.push(values[x][0]);
-      bulkQuery.push(values[x][1]);
+  values.forEach(function(x){
+   if (x[1] !== "" && x[1] !== "()" && typeof x[1] !== "undefined"){
+      bulkQuery.push(x[0]);
+      bulkQuery.push(x[1]);
       bulkQuery.push(" AND ");
     }
-  }
+  })
   bulkQuery.pop();
   downloadFile(bulkQuery);
 }

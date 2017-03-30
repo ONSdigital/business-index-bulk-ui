@@ -11,10 +11,12 @@ function getInputs(){
 }
 
 function createBulkList(toAdd){
-  for (var x = 1; x < multiBulkQuery.length; x++){
-    var replaced = multiBulkQuery[x].replace(/}|{|,|"|"|\)|\(/g,"");
-    toAdd += "<h3>" + x.toString() + "." + replaced + "</h3><button type='button' class='btn btn-primary' onclick='deleteBulk("+x.toString()+");'>Delete</button><br>";
-  }
+  multiBulkQuery.forEach(function(x){
+    if (multiBulkQuery.indexOf(x) !== 0){
+      var replaced = x.replace(/}|{|,|"|"|\)|\(/g,"");
+      toAdd += "<h3>" + multiBulkQuery.indexOf(x) + "." + replaced + "</h3><button type='button' class='btn btn-primary' onclick='deleteBulk("+x+");'>Delete</button><br>";
+    }
+  });
   toAdd += "</div>";
   document.getElementById("bulkList").innerHTML = toAdd;
 }
@@ -40,12 +42,12 @@ function generateList(values) {
   var arr = [];
   var firstUse = true;
 
-  for(var x in values){
-   if (values[x][1] !== ""){
-      arr.push(values[x][1]);
+  values.forEach(function(x){
+   if (x[1] !== ""){
+      arr.push(x[1]);
       arr.push(" AND ");
     }
-  }
+  })
   arr.pop();
   var query = arr.join("");
   if (query !== ""){
