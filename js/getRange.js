@@ -64,7 +64,7 @@ function getCheckBoxInputs(){
         checkboxesChecked.push(" OR ");
         emptyCheckBox = false;
       }
-    })
+    });
     if (!emptyCheckBox){
       checkboxesChecked.pop();
       checkboxesChecked.push(")");

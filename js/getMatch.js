@@ -11,10 +11,12 @@ function getInputs(){
 }
 
 function createBulkList(toAdd){
+  var counter = 1;
   multiBulkQuery.forEach(function(x){
     if (multiBulkQuery.indexOf(x) !== 0){
       var replaced = x.replace(/}|{|,|"|"|\)|\(/g,"");
-      toAdd += "<h3>" + multiBulkQuery.indexOf(x) + "." + replaced + "</h3><button type='button' class='btn btn-primary' onclick='deleteBulk("+x+");'>Delete</button><br>";
+      toAdd += "<h3>" + counter + "." + replaced + "</h3><button type='button' class='btn btn-primary' onclick='deleteBulk("+counter+");'>Delete</button><br>";
+      counter ++;
     }
   });
   toAdd += "</div>";
