@@ -20,16 +20,16 @@ function getRangeInputs(){
 
   rangeValues.forEach(function(y){
      if(y[1] !== "" && y[3] === ""){
-       rangeOutput[rangeValues.indexOf(y)] = y[1].toString()
+       rangeOutput[rangeValues.indexOf(y)] = y[1].toString();
      }
      else if(y[1] !== "" && y[3] !== ""){
-       var joinedQuery = y.join("")
+       var joinedQuery = y.join("");
        rangeOutput[rangeValues.indexOf(y)] = joinedQuery;
      }
      else {
        rangeOutput[rangeValues.indexOf(y)] = "";
      }
-  })
+  });
   return rangeOutput;
 }
 
@@ -110,7 +110,7 @@ function getQuery(values){
     }
   })
   bulkQuery.pop();
-  downloadFile(bulkQuery);
+  //downloadFile(bulkQuery);
 }
 
 function getBulkQuery(bulkType){

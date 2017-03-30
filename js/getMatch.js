@@ -47,7 +47,7 @@ function generateList(values) {
       arr.push(x[1]);
       arr.push(" AND ");
     }
-  })
+  });
   arr.pop();
   var query = arr.join("");
   if (query !== ""){
