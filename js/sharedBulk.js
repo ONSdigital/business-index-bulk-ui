@@ -34,35 +34,31 @@ var alphabet = [["A"],["B"],["C"],
 $("#employmentBand").change(function(e){
   $("#employmentBand2").val("");
   var choice = $(this).val();
-  for (var i in alphabet){
-    if (alphabet.hasOwnProperty(i)) {
-      $("#employmentBand2 option[value="+alphabet[i]+"]").prop("disabled",false);
+  alphabet.some(function(i){
+    $("#employmentBand2 option[value="+i+"]").prop("disabled",false);
+  });
+  alphabet.some(function(j){
+    if (choice !== j.toString()){
+      $("#employmentBand2 option[value="+j+"]").prop("disabled",true);
     }
-  }
-  for (var j in alphabet){
-    if (choice !== alphabet[j].toString()){
-      $("#employmentBand2 option[value="+alphabet[j]+"]").prop("disabled",true);
+    else if (choice === j.toString()){
+      return true;
     }
-    else if (choice === alphabet[j].toString()){
-      break;
-    }
-  }
+  });
 });
 
 $("#turnover").change(function(e){
   $("#turnover2").val("");
   var choice = $(this).val();
-  for (var k in alphabet){
-    if (alphabet.hasOwnProperty(k)) { 
-      $("#turnover2 option[value="+alphabet[k]+"]").prop("disabled",false);
+  alphabet.some(function(k){
+    $("#turnover2 option[value="+k+"]").prop("disabled",false);
+  });
+  alphabet.some(function(l){
+    if (choice !== l.toString()){
+      $("#turnover2 option[value="+l+"]").prop("disabled",true);
     }
-  }
-  for (var l in alphabet){
-    if (choice !== alphabet[l].toString()){
-      $("#turnover2 option[value="+alphabet[l]+"]").prop("disabled",true);
+    else if (choice === l.toString()){
+      return true;
     }
-    else if (choice === alphabet[l].toString()){
-      break;
-    }
-  }
+  });
 });
