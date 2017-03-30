@@ -73,7 +73,7 @@ function getCheckBoxInputs(){
     else{
       checkboxesChecked.pop();
     }
-  })
+  });
   checkboxesChecked.pop();
   var checkQuery = checkboxesChecked.join("");
   return checkQuery;
@@ -108,7 +108,7 @@ function getQuery(values){
       bulkQuery.push(x[1]);
       bulkQuery.push(" AND ");
     }
-  })
+  });
   bulkQuery.pop();
   //downloadFile(bulkQuery);
 }
