@@ -1,12 +1,10 @@
 var multiBulkQuery = [];
-var firstRun = 1;
 
 function getInputs(){
   var selectCategory;
-  if (firstRun === 1){
+  if (multiBulkQuery.length === 0){
     selectCategory = document.getElementById("select").value.toString();
     multiBulkQuery.push(selectCategory+"\n");
-    firstRun=0;
   }
 }
 
