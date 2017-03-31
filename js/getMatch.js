@@ -1,12 +1,10 @@
 var multiBulkQuery = [];
-var firstRun = 1;
 
 function getInputs(){
   var selectCategory;
-  if (firstRun === 1){
+  if (multiBulkQuery.length === 0){
     selectCategory = document.getElementById("select").value.toString();
     multiBulkQuery.push(selectCategory+"\n");
-    firstRun=0;
   }
 }
 
@@ -108,9 +106,9 @@ function changeMaxInput(){
       document.getElementById("selectEntry").setAttribute("data-content","Please enter a 12 digit VAT Number");
       break;
     case "PayeRefs":
-      document.getElementById("selectEntry").maxLength = 10;
-      document.getElementById("selectEntry").pattern = ".{10,10}";
-      document.getElementById("selectEntry").setAttribute("data-content","Please enter a 10 digit PAYE Reference");
+      document.getElementById("selectEntry").maxLength = 13;
+      document.getElementById("selectEntry").pattern = ".{8,13}";
+      document.getElementById("selectEntry").setAttribute("data-content","Please enter a 8-13 digit PAYE Reference");
       break;
     case "CompanyNo":
       document.getElementById("selectEntry").maxLength = 8;
