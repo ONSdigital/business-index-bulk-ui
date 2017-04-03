@@ -110,7 +110,7 @@ function getQuery(values){
     }
   });
   bulkQuery.pop();
-  //downloadFile(bulkQuery);
+  downloadFile(bulkQuery);
 }
 
 function getBulkQuery(bulkType){
