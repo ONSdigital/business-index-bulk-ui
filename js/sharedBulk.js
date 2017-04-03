@@ -1,9 +1,5 @@
 /****************JQUERY*****************/
 
-$("#select").change(function () {
-  document.getElementById("selectEntry").placeholder="Enter "+ document.getElementById("select").value.toString();
-});
-
 $("#industryCode").keyup(function() {
   $("#industryCode").val(this.value.match(/[0-9]*/));
 });
