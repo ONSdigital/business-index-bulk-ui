@@ -40,12 +40,25 @@ function queryValidation(){
   var companyNumberValid = document.getElementById("companyNumber").checkValidity();
   var payeReferenceValid = document.getElementById("payeReference").checkValidity();
   var postCodeValid = document.getElementById("PostCode").checkValidity();
+  var minMaxValidation = compareIndustryCode();
 
-  if (industryCodeValid && industryCode2Valid && vatNumberValid && companyNumberValid && payeReferenceValid && postCodeValid){
+  if (minMaxValidation && industryCodeValid && industryCode2Valid && vatNumberValid && companyNumberValid && payeReferenceValid && postCodeValid){
     return true;
   }
   else {
     return false;
+  }
+}
+
+function compareIndustryCode(){
+  var industryCode1 = document.getElementById("industryCode").value;
+  var industryCode2 = document.getElementById("industryCode2").value;
+  if (industryCode1 > industryCode2){
+    alert("Error: Industry Code Max Range is less than Industry Code Min Range")
+    return false;
+  }
+  else{
+    return true;
   }
 }
 
