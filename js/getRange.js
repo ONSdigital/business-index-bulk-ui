@@ -33,6 +33,18 @@ function getRangeInputs(){
   return rangeOutput;
 }
 
+function compareIndustryCode(){
+  var industryCode1 = document.getElementById("industryCode").value;
+  var industryCode2 = document.getElementById("industryCode2").value;
+  if (industryCode1 > industryCode2){
+    alert("Error: Industry Code Max Range is less than Industry Code Min Range");
+    return false;
+  }
+  else{
+    return true;
+  }
+}
+
 function queryValidation(){
   var industryCodeValid = document.getElementById("industryCode").checkValidity();
   var industryCode2Valid = document.getElementById("industryCode2").checkValidity();
@@ -50,17 +62,6 @@ function queryValidation(){
   }
 }
 
-function compareIndustryCode(){
-  var industryCode1 = document.getElementById("industryCode").value;
-  var industryCode2 = document.getElementById("industryCode2").value;
-  if (industryCode1 > industryCode2){
-    alert("Error: Industry Code Max Range is less than Industry Code Min Range")
-    return false;
-  }
-  else{
-    return true;
-  }
-}
 
 function getCheckBoxInputs(){
   var checkboxesChecked = [];
