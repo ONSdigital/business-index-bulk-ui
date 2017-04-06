@@ -14,9 +14,9 @@ function getRangeInputs(){
                      [employmentBand],
                      [turnover]];
 
-  var rangeValues = [["[",industryCode1, " TO ", industryCode2,"]"],
-                     ["[",employmentBand1, " TO ", employmentBand2,"]"],
-                     ["[",turnover1, " TO ", turnover2,"]"]];
+  var rangeValues = [["%5B",industryCode1, " TO ", industryCode2,"%5D"],
+                     ["%5B",employmentBand1, " TO ", employmentBand2,"%5D"],
+                     ["%5B",turnover1, " TO ", turnover2,"%5D"]];
 
   rangeValues.forEach(function(y){
      if(y[1] !== "" && y[3] === ""){
