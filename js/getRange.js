@@ -14,9 +14,9 @@ function getRangeInputs(){
                      [employmentBand],
                      [turnover]];
 
-  var rangeValues = [["[",industryCode1, " TO ", industryCode2,"]"],
-                     ["[",employmentBand1, " TO ", employmentBand2,"]"],
-                     ["[",turnover1, " TO ", turnover2,"]"]];
+  var rangeValues = [["%5B",industryCode1, " TO ", industryCode2,"%5D"],
+                     ["%5B",employmentBand1, " TO ", employmentBand2,"%5D"],
+                     ["%5B",turnover1, " TO ", turnover2,"%5D"]];
 
   rangeValues.forEach(function(y){
      if(y[1] !== "" && y[3] === ""){
@@ -33,6 +33,18 @@ function getRangeInputs(){
   return rangeOutput;
 }
 
+function compareIndustryCode(){
+  var industryCode1 = document.getElementById("industryCode").value;
+  var industryCode2 = document.getElementById("industryCode2").value;
+  if (industryCode1 > industryCode2){
+    alert("Error: Industry Code Max Range is less than Industry Code Min Range");
+    return false;
+  }
+  else{
+    return true;
+  }
+}
+
 function queryValidation(){
   var industryCodeValid = document.getElementById("industryCode").checkValidity();
   var industryCode2Valid = document.getElementById("industryCode2").checkValidity();
@@ -40,14 +52,16 @@ function queryValidation(){
   var companyNumberValid = document.getElementById("companyNumber").checkValidity();
   var payeReferenceValid = document.getElementById("payeReference").checkValidity();
   var postCodeValid = document.getElementById("PostCode").checkValidity();
+  var minMaxValidation = compareIndustryCode();
 
-  if (industryCodeValid && industryCode2Valid && vatNumberValid && companyNumberValid && payeReferenceValid && postCodeValid){
+  if (minMaxValidation && industryCodeValid && industryCode2Valid && vatNumberValid && companyNumberValid && payeReferenceValid && postCodeValid){
     return true;
   }
   else {
     return false;
   }
 }
+
 
 function getCheckBoxInputs(){
   var checkboxesChecked = [];

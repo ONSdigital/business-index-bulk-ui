@@ -94,31 +94,38 @@ function disableMatch(){
 
 function clearMatch(){
   var field= document.getElementById("selectEntry");
-  field.value= field.defaultValue;
+  field.value = field.defaultValue;
 }
 
 function changeMaxInput(){
   var selectChoice = document.getElementById("select").value;
+  document.getElementById("selectEntry").style.textTransform = "none";
   switch(selectChoice){
     case "VatRefs":
       document.getElementById("selectEntry").maxLength = 12;
       document.getElementById("selectEntry").pattern = "[0-9]{12,12}";
       document.getElementById("selectEntry").setAttribute("data-content","Please enter a 12 digit VAT Number");
+      document.getElementById("selectEntry").placeholder = "Enter a VAT Number";
       break;
     case "PayeRefs":
       document.getElementById("selectEntry").maxLength = 13;
       document.getElementById("selectEntry").pattern = ".{8,13}";
       document.getElementById("selectEntry").setAttribute("data-content","Please enter a 8-13 digit PAYE Reference");
+      document.getElementById("selectEntry").style.textTransform = "uppercase";
+      document.getElementById("selectEntry").placeholder = "Enter a PAYE Reference";
       break;
     case "CompanyNo":
       document.getElementById("selectEntry").maxLength = 8;
       document.getElementById("selectEntry").pattern = "[a-zA-Z]{2}[0-9]{6}|[0-9]{8}";
       document.getElementById("selectEntry").setAttribute("data-content","Please enter a 8 digit Company Reference Number");
+      document.getElementById("selectEntry").style.textTransform = "uppercase";
+      document.getElementById("selectEntry").placeholder = "Enter a Company Registration Number";
       break;
     default:
       document.getElementById("selectEntry").maxLength = 50;
       document.getElementById("selectEntry").pattern = ".{1,50}";
       document.getElementById("selectEntry").setAttribute("data-content","Please enter a 1-50 character Business Name");
+      document.getElementById("selectEntry").placeholder = "Enter a Business Name";
       break;
   }
 }
@@ -126,7 +133,7 @@ function changeMaxInput(){
 var listener = document.getElementById("selectEntry");
 listener.addEventListener("keydown", function (e) {
   if (e.keyCode === 13) {  //checks whether the pressed key is "Enter"
-    getBulkMatch("single");
+    getBulkMatch();
     disableMatch();
     clearMatch();
   }

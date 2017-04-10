@@ -55,34 +55,34 @@
     <form onsubmit="getBulkQuery('multi');">
       <div class="container" style:"overflow:hidden">
         <h1 class="page-header">Bulk Query</h1>
-        <div class="form-group" style="width: 30em; float:left;">
+        <div class="form-group" style="width: 40em; float:left;">
 
           <label>Business Name</label>
-          <input class="form-control" id="businessName" maxlength="50" placeholder="Enter Business Name" pattern=".{1,50}" autocomplete="off" data-toggle="popover" title="Information" data-content="Please enter a 1-50 character Business Name"><br>
+          <input class="form-control" id="businessName" maxlength="50" placeholder="Enter a Business Name" pattern=".{1,50}" autocomplete="off" data-toggle="popover" title="Information" data-content="Please enter a 1-50 character Business Name"><br>
 
           <label>Company Registration Number</label>
-          <input class="form-control" id="companyNumber" maxlength="8" placeholder="Enter Company Registration Number" pattern="[a-zA-Z]{2}[0-9]{6}|[0-9]{8}" autocomplete="off" data-toggle="popover" title="Information" data-content="Please enter a 8 digit Company Registration Number"><br>
+          <input class="form-control" id="companyNumber" maxlength="8" placeholder="Enter a Company Registration Number" pattern="[a-zA-Z]{2}[0-9]{6}|[0-9]{8}" autocomplete="off" data-toggle="popover" title="Information" data-content="Please enter a 8 digit Company Registration Number"><br>
 
           <label>VAT Number</label>
-          <input class="form-control" id="vatNumber" maxlength="12" placeholder="Enter VAT Number" pattern=".{12,12}" data-toggle="popover" title="Information" data-content="Please enter a 12 digit VAT Number"><br>
+          <input class="form-control" id="vatNumber" maxlength="12" placeholder="Enter a VAT Number" pattern=".{12,12}" data-toggle="popover" title="Information" data-content="Please enter a 12 digit VAT Number"><br>
 
           <label>PAYE Reference</label>
-          <input class="form-control" id="payeReference" maxlength="13" placeholder="Enter PAYE Reference" pattern=".{8,13}" data-toggle="popover" title="Information" data-content="Please enter a 8-13 digit PAYE Reference"><br>
+          <input class="form-control" id="payeReference" maxlength="13" placeholder="Enter a PAYE Reference" pattern=".{8,13}" data-toggle="popover" title="Information" data-content="Please enter a 8-13 digit PAYE Reference"><br>
 
           <label for="PostCode">Postcode</label>
-          <input type="PostCode" class="form-control" id="PostCode" maxlength="8" placeholder="Enter Postcode" pattern="(*)|[a-zA-Z*]{2}([0-9*]{1,2}|[0-9*][a-zA-Z*])\s*[0-9*][a-zA-Z*]{2}" data-toggle="popover" title="Information" data-content="Please enter a valid Post Code"><br>
+          <input type="PostCode" class="form-control" id="PostCode" maxlength="8" placeholder="Enter a Postcode" pattern="[a-zA-Z*]{1,2}[0-9*]{1,2}\s*[0-9*]{0,1}[a-zA-Z*]{0,2}" data-toggle="popover" title="Information" data-content="Please enter a valid Post Code"><br>
 
-          <div style="width: 15em; float: left;">
+          <div style="width: 20em; float: left;">
               <label for="IndustryCode">Industry Code Min Range</label>
-              <input maxLength=5 type="IndustryCode" class="form-control" id="industryCode" placeholder="Enter Industry Code Number" pattern=".{5,5}" data-toggle="popover" title="Information" data-content="Please enter a 5 digit Industry Code">
+              <input maxLength=5 type="IndustryCode" class="form-control" id="industryCode" placeholder="Enter an Industry Code Number" pattern=".{5,5}" data-toggle="popover" title="Information" data-content="Please enter a 5 digit Industry Code">
           </div>
-          <div style="width: 15em; float: left;">
+          <div style="width: 20em; float: left;">
               <label for="IndustryCode">Industry Code Max Range</label>
-              <input type="IndustryCode" class="form-control" id="industryCode2" maxlength="5" placeholder="Enter Industry Code Number" pattern=".{5,5}" data-toggle="popover" title="Information" data-content="Please enter a 5 digit Industry Code">
+              <input type="IndustryCode" class="form-control" id="industryCode2" maxlength="5" placeholder="Enter an Industry Code Number" pattern=".{5,5}" data-toggle="popover" title="Information" data-content="Please enter a 5 digit Industry Code">
               <br>
           </div>
 
-          <div style="width: 15em; float: left;">
+          <div style="width: 20em; float: left;">
               <label for="employmentbandlabel">Employment Band Min Range</label>
               <select class="form-control" id="employmentBand">
                 <option></option>
@@ -103,7 +103,7 @@
                 <option value="O">O [500+]</option>
               </select>
           </div>
-          <div style="width: 15em; float: left;">
+          <div style="width: 20em; float: left;">
               <label for="employmentbandlabel">Employment Band Max Range</label>
               <select class="form-control" id="employmentBand2">
                 <option></option>
@@ -126,7 +126,7 @@
               <br>
           </div>
 
-          <div style="width: 15em; float: left;">
+          <div style="width: 20em; float: left;">
               <label for="turnoverlabel">Turnover Min Range</label>
               <select class="form-control" id="turnover">
                 <option></option>
@@ -141,7 +141,7 @@
                 <option value="I">I [50,000+]</option>
               </select>
           </div>
-          <div style="width: 15em; float: left;">
+          <div style="width: 20em; float: left;">
               <label for="turnoverlabel">Turnover Max Range</label>
               <select class="form-control" id="turnover2">
                 <option></option>
