@@ -4,6 +4,9 @@ function getInputs(){
   var selectCategory;
   if (multiBulkQuery.length === 0){
     selectCategory = document.getElementById("select").value.toString();
+    if (selectCategory.includes("%")){
+      selectCategory = selectCategory.replace("%","%25")
+    }
     multiBulkQuery.push(selectCategory+"\n");
   }
 }
