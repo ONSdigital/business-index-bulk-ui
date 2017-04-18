@@ -62,6 +62,9 @@ function getBulkMatch(){
   getInputs();
   var selectCategory = document.getElementById("select").value.toString();
   var selectValue = document.getElementById("selectEntry").value.toString();
+  if (selectCategory === "PayeRefs" || selectCategory === "CompanyNo"){
+    selectValue = selectValue.toUpperCase();
+  }
   var valid = document.getElementById("selectEntry").checkValidity();
   var values = [[selectCategory+"=",selectValue]];
   if (valid || selectCategory === "BusinessName"){
@@ -119,7 +122,7 @@ function changeMaxInput(){
       break;
     case "CompanyNo":
       document.getElementById("selectEntry").maxLength = 8;
-      document.getElementById("selectEntry").pattern = "[a-zA-Z]{2}[0-9]{6}|[0-9]{8}";
+      document.getElementById("selectEntry").pattern = pattern="[0-9]{8}|^(AC|ac|ES|es|FC|fc|GE|ge|GS|gs|IC|ic|IP|ip|LP|lp|NA|ns|NC|nc|NF|nf|NI|ni|NL|nl|NO|no|NP|np|NR|nr|NV|nv|NZ|nz|OC|oc|R0|r0|RC|rc|RS|rs|SA|sa|SC|sc|SE|se|SF|sf|SI|si|SL|sl|SO|so|SP|sp|SR|sr|SZ|sz|ZC|zc)([0-9]{6})";
       document.getElementById("selectEntry").setAttribute("data-content","Please enter a 8 digit Company Reference Number");
       document.getElementById("selectEntry").style.textTransform = "uppercase";
       document.getElementById("selectEntry").placeholder = "Enter a Company Registration Number";

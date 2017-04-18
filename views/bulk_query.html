@@ -61,7 +61,7 @@
           <input class="form-control" id="businessName" maxlength="50" placeholder="Enter a Business Name" pattern=".{1,50}" autocomplete="off" data-toggle="popover" title="Information" data-content="Please enter a 1-50 character Business Name"><br>
 
           <label>Company Registration Number</label>
-          <input class="form-control" id="companyNumber" maxlength="8" placeholder="Enter a Company Registration Number" pattern="[a-zA-Z]{2}[0-9]{6}|[0-9]{8}" autocomplete="off" data-toggle="popover" title="Information" data-content="Please enter a 8 digit Company Registration Number"><br>
+          <input class="form-control" id="companyNumber" maxlength="8" placeholder="Please enter a 8 digit Customer Reference Number." pattern="[0-9]{8}|^(AC|ac|ES|es|FC|fc|GE|ge|GS|gs|IC|ic|IP|ip|LP|lp|NA|ns|NC|nc|NF|nf|NI|ni|NL|nl|NO|no|NP|np|NR|nr|NV|nv|NZ|nz|OC|oc|R0|r0|RC|rc|RS|rs|SA|sa|SC|sc|SE|se|SF|sf|SI|si|SL|sl|SO|so|SP|sp|SR|sr|SZ|sz|ZC|zc)([0-9]{6})" autocomplete="off" data-toggle="popover" title="Information" data-content="Please enter a 8 digit Company Registration Number. Or  A company number prefix (e.g. AC,ES,FC) followed by 6 numbers."><br>
 
           <label>VAT Number</label>
           <input class="form-control" id="vatNumber" maxlength="12" placeholder="Enter a VAT Number" pattern=".{12,12}" data-toggle="popover" title="Information" data-content="Please enter a 12 digit VAT Number"><br>
@@ -70,7 +70,7 @@
           <input class="form-control" id="payeReference" maxlength="13" placeholder="Enter a PAYE Reference" pattern=".{8,13}" data-toggle="popover" title="Information" data-content="Please enter a 8-13 digit PAYE Reference"><br>
 
           <label for="PostCode">Postcode</label>
-          <input type="PostCode" class="form-control" id="PostCode" maxlength="8" placeholder="Enter a Postcode" pattern="[a-zA-Z*]{1,2}[0-9*]{1,2}\s*[0-9*]{0,1}[a-zA-Z*]{0,2}" data-toggle="popover" title="Information" data-content="Please enter a valid Post Code"><br>
+          <input type="PostCode" class="form-control" id="PostCode" maxlength="8" placeholder="Enter a Postcode (uppercase)" pattern="[a-zA-Z*]{1,2}[a-zA-Z0-9*]{0,2}\s*[0-9*]{0,1}[a-zA-Z*]{0,2}" data-toggle="popover" title="Information" data-content="Please enter a valid Post Code"><br>
 
           <div style="width: 20em; float: left;">
               <label for="IndustryCode">Industry Code Min Range</label>
