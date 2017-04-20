@@ -131,9 +131,9 @@ function getBulkQuery(bulkType){
   var values = [];
   var businessName = document.getElementById("businessName").value.toString();
   var vatNumber = document.getElementById("vatNumber").value.toString();
-  var companyNumber = document.getElementById("companyNumber").value.toString();
-  var payeReference = document.getElementById("payeReference").value.toString();
-  var postCode = document.getElementById("PostCode").value.toString();
+  var companyNumber = document.getElementById("companyNumber").value.toString().toUpperCase();
+  var payeReference = document.getElementById("payeReference").value.toString().toUpperCase();
+  var postCode = document.getElementById("PostCode").value.toString().toUpperCase();
   var valid = queryValidation();
   var rangeValues = getRangeInputs();
   var industryCode = rangeValues[0];
@@ -151,8 +151,5 @@ function getBulkQuery(bulkType){
   if (valid){
     //download queryCSV
     getQuery(values);
-  }
-  else {
-    //alert or display error message
   }
 }
