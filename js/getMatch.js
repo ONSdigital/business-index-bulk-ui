@@ -103,6 +103,10 @@ function clearMatch(){
   field.value = field.defaultValue;
 }
 
+function resetMatch(){
+  window.location.reload();
+}
+
 function changeMaxInput(){
   var selectChoice = document.getElementById("select").value;
   document.getElementById("selectEntry").style.textTransform = "none";
