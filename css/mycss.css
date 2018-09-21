@@ -26,15 +26,15 @@ background-color:yellow;
 }
 
 .input-xlarge {
-width: 270px;
-display: block ;
-margin-bottom:30px;
+  width: 270px;
+  display: block ;
+  margin-bottom:30px;
 }
 
 .input-xlargeinrow {
-width: 270px;
-margin-bottom:30px;
-margin-right: 90px;
+  width: 270px;
+  margin-bottom:30px;
+  margin-right: 90px;
 }
 
 /* Below is for the json highlighting */
@@ -54,13 +54,13 @@ margin-right: 90px;
 
 /* Div for the results */
 .results {
-font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-font-size: 14px;
-font-style: normal;
-font-variant: normal;
-font-weight: 400;
-line-height: 20px;
-line-height: 200%;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
+  line-height: 200%;
 }
 
 .list-on {
@@ -68,30 +68,75 @@ line-height: 200%;
 }
 
 .query {
-    margin-top: 2%;
-    margin-bottom: 2%;
-    border-radius: 25px;
-    background: #ececf9;
-    border-color: black;
-    padding: 20px;
-    width: 100%;
-    height: 15%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  border-radius: 25px;
+  background: #ececf9;
+  border-color: black;
+  padding: 20px;
+  width: 100%;
+  height: 15%;
 }
 
 
 #logo {
-    float: left;
+  float: left;
 }
 
 /* Changes the banner text (to the right of the logo) so it is inline with the logo */
 .banner-text {
-    text-align: right;
-    padding-top: 2%;
+  text-align: right;
+  padding-top: 2%;
 }
 
 /* Changes the look of the Range Query Check Boxes */
 .rqcb
 {
-    width: 12em;
-    float: left;
+  width: 12em;
+  float: left;
+}
+
+#industryCode:valid,
+#industryCode2:valid,
+#selectEntry:valid,
+#businessName:valid,
+#industryCode:valid,
+#vatNumber:valid,
+#companyNumber:valid,
+#payeReference:valid,
+#PostCode:valid {
+  color: green;
+}
+
+#industryCode:invalid,
+#industryCode2:invalid,
+#selectEntry:invalid,
+#businessName:invalid,
+#industryCode:invalid,
+#vatNumber:invalid,
+#companyNumber:invalid,
+#payeReference:invalid,
+#PostCode:invalid {
+  color: red;
+  border-color: red;
+}
+
+#companyNumber,
+#PostCode,
+#payeReference {
+  text-transform:uppercase;
+}
+
+#payeReference:placeholder-shown,
+#PostCode:placeholder-shown,
+#companyNumber:placeholder-shown {
+  text-transform:none;
+}
+
+#bulkList {
+  height: 400px;
+  width: 30em;
+  float: right;
+  margin-right: 20%;
+  overflow: auto;
 }
